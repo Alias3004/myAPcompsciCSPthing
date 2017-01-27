@@ -137,12 +137,6 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
         if getting_team_name: 
             return 'EJS'
         else:
-            return 'b'
-          elif player == 8:
-        if getting_team_name:
-            #if there was a previous round just like 
-            return 'loyal vengeful with permanent second impression'
-        else:
             # use history, opponent_history, score, opponent_score
             # to compute your strategy      
             if len(opponent_history)==0: #It's the first round: collude
@@ -166,60 +160,32 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
                     return 'b' # betray if they were severely punished last time
                 else:
                     return 'c' #otherwise collude
-
- elif player == 10:
-        if getting_team_name:
-            return 'temporary clever team name that is totally unique and creative'
-        else:
-            # use history, opponent_history, score, opponent_score
-            # to compute your strategy
-            if len(opponent_history)==0: #It's the first round: collude
-                return 'c'
-            elif history[-1]=='c' and opponent_history[-1]=='b':
-                return 'b' # betray is they were severely punished last time
-            else:
-                return 'c' #otherwise collude
-
- elif player == 10:
-        if getting_team_name:
-            return 'Possible AI without short-term memory loss'
-        else:
-            # use history, opponent_history, score, opponent_score
-            # to compute your strategy
-            if len(opponent_history)==0: #It's the first round: collude
-                return 'c'
-            elif opponent_history[-1]=='b':
-                return 'b' # betray is they were severely punished last time
-            else:
-                return 'c' #otherwise collude
-                
-            moves_table[player1][player2] = moves1
-            moves_table[player2][player1] = moves2
-            filename = os.path.join(directory, 'tournament.txt')
-
-
-    team_names = range(num_players)
-   
-    use_datafile=True
-    if use_datafile:
-        # use the same directory as the python script
-        import os.path              
-        directory = os.path.dirname(os.path.abspath(__file__))  
+# the results in the file are team x v team y, other name line, other name line, then the actions of each 
+            '''
+            import os.path              
+            directory = os.path.dirname(os.path.abspath(__file__))  
         
-        #name the file tournament.txt
-        filename = os.path.join(directory, 'tournament.txt')
-        #create the file for the round-by-round results
-        results = open(filename,'w')
-        for player1 in range(num_players):
+            #name the file tournament.txt
+            filenamealpha = os.path.join(directory, 'tournament.txt')
+            filenamebeta = os.path.join(directory, 'placeholder.txt')
+            alpha = open(filenamealpha, 'a')
+            play_tournament(#of players)
+            use_datafile=True
+            if use_datafile:
+            # use the same directory as the python script
+            import os.path              
+            directory = os.path.dirname(os.path.abspath(__file__))  
+            #name the file tournament.txt
+            filename = os.path.join(directory, 'tournament.txt')
+            #create the file for the round-by-round results
+            results = open(filename,'r')
+            for player1 in range(num_players):
             for player2 in range(player1):
-              
-        #append the file showing algorithms
-        results.write('\n\n' + '-'*79 + '\n' + \
-                    'Here is the code that produced this data:\n\n')
-        this_code_file = open(__file__, 'r')
-        for line in this_code_file:
+
+            this_code_file = open(__file__, 'r')
+            for line in this_code_file:
             results.write(line)
-                
+            '''
 
 
 
