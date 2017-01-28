@@ -167,7 +167,9 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
             #if the variable is more than 1, then when the sub version of this code is called (the one that isn't in the actual
             #tournament), it won't call another tournment and get stuck in a loop. Problem: if this code does best. will need
             #to set an exception for this unlikely circumstance. 
-            
+            #get the history stuff and other variables and input them into the get action function, EXCEPT player.
+            #into player, input the data of the most successful code.
+            get_action(player, history, opponent_history, score, opponent_score, getting_team_name=False):
             import os.path              
             directory = os.path.dirname(os.path.abspath(__file__))  
         
