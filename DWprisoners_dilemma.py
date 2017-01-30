@@ -142,8 +142,8 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
             if len(opponent_history)==0: #It's the first round: collude
                 return 'c'
             else:
-                global player1
-                global player2
+                nonlocal player1
+                nonlocal player2
                 if player1 == 1:
                     Aplayer = player2
     
