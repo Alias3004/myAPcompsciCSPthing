@@ -135,7 +135,7 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
     #This example player always betrays.      
     elif player == 1:
         if getting_team_name: 
-            return 'EJS'
+            return 'Outatime'
         else:
             # use history, opponent_history, score, opponent_score
             # to compute your strategy      
@@ -160,40 +160,7 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
                     return 'b' # betray if they were severely punished last time
                 else:
                     return 'c' #otherwise collude
-# the results in the file are team x v team y, other name line, other name line, then the actions of each
-# scratch that, I'm retrieving the overall scores, then 'borrowing' the code
-            '''
-            #need a global variable that is checked at the beginning of the code. Basically, set this variable to +1 or something.
-            #if the variable is more than 1, then when the sub version of this code is called (the one that isn't in the actual
-            #tournament), it won't call another tournment and get stuck in a loop. Problem: if this code does best. will need
-            #to set an exception for this unlikely circumstance. 
-            #get the history stuff and other variables and input them into the get action function, EXCEPT player.
-            #into player, input the data of the most successful code.
-            get_action(player, history, opponent_history, score, opponent_score, getting_team_name=False):
-            import os.path              
-            directory = os.path.dirname(os.path.abspath(__file__))  
-        
-            #name the file tournament.txt
-            filenamealpha = os.path.join(directory, 'tournament.txt')
-            filenamebeta = os.path.join(directory, 'placeholder.txt')
-            alpha = open(filenamealpha, 'a')
-            play_tournament(#of players)
-            use_datafile=True
-            if use_datafile:
-            # use the same directory as the python script
-            import os.path              
-            directory = os.path.dirname(os.path.abspath(__file__))  
-            #name the file tournament.txt
-            filename = os.path.join(directory, 'tournament.txt')
-            #create the file for the round-by-round results
-            results = open(filename,'r')
-            for player1 in range(num_players):
-            for player2 in range(player1):
 
-            this_code_file = open(__file__, 'r')
-            for line in this_code_file:
-            results.write(line)
-            '''
 
 
 
