@@ -36,6 +36,7 @@ instructions = '''
 '''
 global player_room
 player_room = 'start'
+#I hope I can make the inventory less complicated... 
 global player_inventory
 player_inventory = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
@@ -45,6 +46,8 @@ class room():
         self.names = name
         self.directions = direction
         self.numbers = number
+        #if the direction is not available, then input the specific failure for each impossible direction
+        #e.g., wall, cliff, etcetera
         self.north = dir_N
         self.east = dir_E
         self.south = dir_S
@@ -52,7 +55,8 @@ class room():
         
         
             
-debris_room = room('debris', 'ns', 5, 'grill', '', 'long hall', '')
+debris_room = room('debris', 'ns', 5, 'grill', 'wall', 'long hall', 'wall')
+wall_room = room('wall', '', 99, '', '', '', '')
 
 def room_map(room, direction):
     #this is what controls where goes to where
