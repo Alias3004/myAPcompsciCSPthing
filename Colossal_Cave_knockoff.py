@@ -55,8 +55,9 @@ class room():
         
         
             
-debris_room = room('debris', 'ns', 5, 'grill', 'wall', 'long hall', 'wall')
+debris_room = room('debris', 'ns', 5, 'grill', 'wall', 'long_hall', 'wall')
 wall_room = room('wall', '', 99, '', '', '', '')
+start_room = ('start', 'nesw', 0, 'forest1', 'forest2', 'forest3', 'home')
 
 def room_map(room, direction):
     #this is what controls where goes to where
