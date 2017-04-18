@@ -140,7 +140,7 @@ def possible_answer(answer, state):
     #state 0 is true/false, state 1 is direction or other
     #may add extended commands later
     if state == 0: #true/false
-        if answer == y or answer == n:
+        if answer == 'y' or answer == 'n':
             return 1
         else:
             return 0
