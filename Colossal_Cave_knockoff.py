@@ -42,24 +42,27 @@ player_inventory = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
 class room():
     #rooms are the basic unit, in a grid formation. movement only possible in straight lines.
-    def __init__(self, name, direction, number, dir_N, dir_E, dir_S, dir_W):
+    def __init__(self, name, direction, dir_N, dir_E, dir_S, dir_W):
         self.names = name
         self.directions = direction
-        self.numbers = number
         #if the direction is not available, then input the specific failure for each impossible direction
         #e.g., wall, cliff, etcetera
         self.north = dir_N
         self.east = dir_E
         self.south = dir_S
         self.west = dir_W
-        
-        
-            
-debris_room = room('debris', 'ns', 5, 'grill', 'wall', 'long_hall', 'wall')
-wall_room = room('wall', '', 99, '', '', '', '')
-start_room = ('start', 'nesw', 0, 'forest1', 'forest2', 'forest3', 'home')
+def setup():
+    #make the roomz
+    debris_room = room('debris', 'ns', 'grill_room', 'wall', 'Hall_of_the_Mount', 'wall')
+    wall = room('wall', '', '', '', '', '')
+    start_room = ('start', 'nesw', 'wilderness', 'wilderness', 'forest3', 'home')
+    wilderness = ('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest3')
+    forest3 = ('forest', 'nesw', 'start', 'wilderness', 'plains3', 'wilderness')
+    plains3 = ('plains', 'nesw', 'forest3', 'featureless_plain', 'entrance', 'featureless_plain')
+    home = ('Cabin', 'e', '', 'start', '', '')
+    
 
-def room_map(direction):
+def room_change(direction):
     #this is what controls where goes to where
     global player_room
     room = player_room
@@ -113,7 +116,7 @@ def movement (room, times, direction):
             print 'you go north'
         else:
             print 'you go east'
-        
+        room_change(direction)
     elif iteration < 5:
         iteration = iteration + 1
         print "you can't go that way"
