@@ -37,8 +37,11 @@ instructions = '''
 global player_room
 player_room = 'start'
 #I hope I can make the inventory less complicated... 
+#got it! each room has an 'inventory, as does the player, and the object stores which room it's in (or if it's in the player's
+#inventory
+
 global player_inventory
-player_inventory = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+player_inventory = []
 
 class room():
     #rooms are the basic unit, in a grid formation. movement only possible in straight lines.
