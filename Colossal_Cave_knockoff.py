@@ -60,36 +60,50 @@ class room():
 def setup():
     #make the roomz
     #first entry strings/look
-    debris_string_1 = 'You are in '
+    debris_string_1 = 'You are in a room full of junk and debris. There is an awkward slope to the north, and a widening passage to the south. There is a rock here with the letters XYZZY'
     cliff_string = 'you fall down a cliff and break every bone in your body!'
     wall_string = 'you walk into a wall. Ouch!'
-    start_string_1 = ''
-    wilderness_string = 'you are in a wilderness'
-    featureless_string = 'you are on a featureless plain'
-    plains3_string = 'you are on a plain'
-    forest3_string = 'you are in a forest
+    start_string_1 = 'You are in a small clearing next to a stream. West of you is a small cabin. There is a wilderness to the north and east, and a more natural forest to the south'
+    wilderness_string = 'you are in a wilderness, stretching in all directions'
+    featureless_string = 'you are on a featureless plain, stretching in all directions'
+    plains3_string_1 = 'you are on a plain. There is a featureless plain to the east and west, a forest to the north, and what looks like a rock pile to the south'
+    forest3_string_1 = 'you are in a forest. There is a wilderness to the east and west, and what looks to be a clearing to the south. North of you is the stream and the cabin.'
+    home_string_1 = 'you are in a small cabin, with three walls and a door on the east side. There is a small fountain here.'
+    Hall_of_the_mount_string_1 = 'You are in a large, long hallway stretching to the south. North of you is a narrowing passage. Above you is a sign stretching into the distance. You can read "Hall of the Mount"'
+    ain_King_string_1 = 'You are in a large, long hallway stretching to the north. To the west there is a small gateway leading to a chasm. Above you is a sign stretching into the distance. You can read "ain king"'
+    entrance_string_1 = 'You are at a large pile of rocks leading to a cave, with a large grill. Fortunately, it has a hole in it. There is a featureless plain to the east and west, and a plains to the north.'
+    grill_string_1 = 'You are in the room inside of the grill. There is light here, but to the south it is dark.'
+    chasm1_string_1 = 'you are at the north edge of a gaping chasm, too wide to jump. The bottom is out of sight. There is a sign here depicting what appears to be a tribal shaman performing a ritual with a stick - it is very crude. To the east is a portal to "ain King"'
+    chasm2_string_1 = 'you are at the south edge of a gaping chasm, too wide to jump. To the south is a cave which appears to glitter faintly.'
+    Twilight_zone_string_1 = 'welcome to the Twilight Zone'
     #second entry strings
     debris_string_2 = 'your are in debris room'
-    start_string_2 = ''
+    plains3_string_2 = 'you are on a plain'
+    forest3_string_2 = 'you are in a forest'
+    start_string_2 = 'You are in a small clearing near a stream'
     home_string_2 = 'you are in the cabin'
-    Hall_of_the_Mount = 'you are in the Hall of the Mount'
+    Hall_of_the_Mount_string_2 = 'you are in the Hall of the Mount'
+    ain_king_string_2 = 'you are in "ain King"'
+    entrance_string_2 = 'you are at the cave entrance'
+    grill_string_2 = 'You are in the grill room'
+    Twilight_zone_string_2 = 'you are in the Twilight Zone'
     #rooms
     debris_room = room('debris', 'ns', 'grill_room', 'wall', 'Hall_of_the_Mount', 'wall', debris_string_1, debris_string_2)
     wall = room('wall', '', '', '', '', '', wall_string, wall_string)
     cliff = room('cliff', '','','','', cliff_string, cliff_string)
     start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest3', 'home', start_string_1, start_string_2)
     wilderness = room('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest3', wilderness_string, wilderness_string)
-    forest3 = room('forest', 'nesw', 'start', 'wilderness', 'plains3', 'wilderness', forest3_string, forest3_string)
-    plains3 = room('plains', 'nesw', 'forest3', 'featureless_plain', 'cave_entrance', 'featureless_plain', plains3_string, plains3_string)
+    forest3 = room('forest', 'nesw', 'start', 'wilderness', 'plains3', 'wilderness', forest3_string_1, forest3_string_2)
+    plains3 = room('plains', 'nesw', 'forest3', 'featureless_plain', 'cave_entrance', 'featureless_plain', plains3_string_1, plains3_string_2)
     home = room('Cabin', 'e', 'wall', 'start', 'wall', 'wall', home_string_1, home_string_2)
     featureless_plain = room('featureless plain', 'nesw', 'featureless_plain', 'featureless_plain', 'plains3', 'featureless_plain', featureless_string, featureless_string)
     Hall_of_the_Mount = room('Hall of the Mount', 'ns', 'debris_room', 'wall', 'ain_King', 'wall', Hall_of_the_mount_string_1, Hall_of_the_Mount_string_2)
     ain_King = room('ain King', 'ne', 'Hall_of_the_Mount', 'Chasm1', 'wall', 'wall', ain_King_string_1, ain_King_string_2)
-    cave_entrance = room('Cave entrance', 'nesw', 'plains3', 'featureless_plain', 'grill_room', 'featureless_plain', cave_entrance_string_1, cave_entrance_string_2)
-    grill_room = room('grill room', 'ns', 'cave_entrance', 'wall', 'debris_room', 'wall', grill_room_string_1, grill_room_string_2)
+    cave_entrance = room('Cave entrance', 'nesw', 'plains3', 'featureless_plain', 'grill_room', 'featureless_plain', entrance_string_1, entrance_string_2)
+    grill_room = room('grill room', 'ns', 'cave_entrance', 'wall', 'debris_room', 'wall', grill_string_1, grill_string_2)
     Chasm1 = room('north chasm', 'sw', 'wall', 'cliff', 'ain_King', 'Chasm2', Chasm1_string_1, Chasm1_string_2)
     Chasm2 = room('south chasm', 'ns', 'Chasm1', 'wall', 'Crystal_room', 'wall', Chasm2_string_2, chasm2_string_2)
-    Crystal_Room = room('Crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_room_string_1, crystal_room_string_2)
+    Crystal_Room = room('Crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_string_1, crystal_string_2)
     Twilight_Zone = room('Twilight Zone', 'nesw', 'ugh', 'ugh', 'ugh', 'ugh', Twilight_zone_string_1, Twilight_zone_string_2)
     ugh = room('ugh', 'nesw', 'Twilight_Zone', 'Twilight_Zone', 'Twilight_Zone', 'Maze5', ugh_string_1, ugh_string_2)
     
