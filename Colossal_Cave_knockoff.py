@@ -35,7 +35,7 @@ z - sleep or skip turn?
 instructions = '''
 '''
 global player_room
-player_room = 'start'
+player_room = 'start_room'
 #I hope I can make the inventory less complicated... 
 #got it! each room has an 'inventory, as does the player, and the object stores which room it's in (or if it's in the player's
 #inventory
@@ -80,6 +80,7 @@ def setup():
     chasm1_string_1 = 'you are at the north edge of a gaping chasm, too wide to jump. The bottom is out of sight. There is a sign here depicting what appears to be a tribal shaman performing a ritual with a stick - it is very crude. To the east is a portal to "ain King"'
     chasm2_string_1 = 'you are at the south edge of a gaping chasm, too wide to jump. To the south is a cave which appears to glitter faintly.'
     Twilight_zone_string_1 = 'welcome to the Twilight Zone'
+    death_string_1 = "Now you've done it! You've gone and got yourself killed! I can't believe this! Now, I haven't done this before, so be cautious - but would you like me to try and reincarnate you?"
     #second entry strings
     debris_string_2 = 'your are in debris room'
     plains3_string_2 = 'you are on a plain'
@@ -91,7 +92,9 @@ def setup():
     entrance_string_2 = 'you are at the cave entrance'
     grill_string_2 = 'You are in the grill room'
     Twilight_zone_string_2 = 'you are in the Twilight Zone'
+    death_string_2 = "You did it again. Seriously, you need to be more careful if you're going to survive here! Would you like me to try and reincarnate you?"
     #rooms
+    pit_death = room('death', '', '', '', '', '', death_string_1, death_string_2)
     debris_room = room('debris', 'ns', 'grill_room', 'wall', 'Hall_of_the_Mount', 'wall', debris_string_1, debris_string_2)
     wall = room('wall', '', '', '', '', '', wall_string, wall_string)
     cliff = room('cliff', '','','','', cliff_string, cliff_string)
@@ -133,6 +136,8 @@ def room_change(direction):
         else:
             print 'program failure'
         player_room = getattr(room, whichway)
+    else:
+        player_room = 'pit_death'
 
 def object_status(room):
     #controls where the objects are
