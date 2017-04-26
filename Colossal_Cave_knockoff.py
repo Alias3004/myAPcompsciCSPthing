@@ -42,11 +42,13 @@ player_room = 'start'
 
 global player_inventory
 player_inventory = []
-
+global lamp_room = 'home'
+global lamp_on
+lamp_on = False
 
 class room():
     #rooms are the basic unit, in a grid formation. movement only possible in straight lines.
-    def __init__(self, name, direction, dir_N, dir_E, dir_S, dir_W, entry1, entry2):
+    def __init__(self, name, direction, dir_N, dir_E, dir_S, dir_W, entry1, entry2, aboveground = False):
         self.names = name
         self.directions = direction
         #if the direction is not available, then input the specific failure for each impossible direction
@@ -57,6 +59,8 @@ class room():
         self.west = dir_W
         self.long_description = entry1
         self.short_description = entry2
+        self.aboveground = aboveground
+        
 def setup():
     #make the roomz
     #first entry strings/look
@@ -91,16 +95,16 @@ def setup():
     debris_room = room('debris', 'ns', 'grill_room', 'wall', 'Hall_of_the_Mount', 'wall', debris_string_1, debris_string_2)
     wall = room('wall', '', '', '', '', '', wall_string, wall_string)
     cliff = room('cliff', '','','','', cliff_string, cliff_string)
-    start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest3', 'home', start_string_1, start_string_2)
-    wilderness = room('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest3', wilderness_string, wilderness_string)
-    forest3 = room('forest', 'nesw', 'start', 'wilderness', 'plains3', 'wilderness', forest3_string_1, forest3_string_2)
-    plains3 = room('plains', 'nesw', 'forest3', 'featureless_plain', 'cave_entrance', 'featureless_plain', plains3_string_1, plains3_string_2)
-    home = room('Cabin', 'e', 'wall', 'start', 'wall', 'wall', home_string_1, home_string_2)
-    featureless_plain = room('featureless plain', 'nesw', 'featureless_plain', 'featureless_plain', 'plains3', 'featureless_plain', featureless_string, featureless_string)
+    start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest3', 'home', start_string_1, start_string_2, aboveground = True)
+    wilderness = room('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest3', wilderness_string, wilderness_string, aboveground = True)
+    forest3 = room('forest', 'nesw', 'start', 'wilderness', 'plains3', 'wilderness', forest3_string_1, forest3_string_2, aboveground = True)
+    plains3 = room('plains', 'nesw', 'forest3', 'featureless_plain', 'cave_entrance', 'featureless_plain', plains3_string_1, plains3_string_2, aboveground = True)
+    home = room('Cabin', 'e', 'wall', 'start', 'wall', 'wall', home_string_1, home_string_2, aboveground = True)
+    featureless_plain = room('featureless plain', 'nesw', 'featureless_plain', 'featureless_plain', 'plains3', 'featureless_plain', featureless_string, featureless_string, aboveground = True)
     Hall_of_the_Mount = room('Hall of the Mount', 'ns', 'debris_room', 'wall', 'ain_King', 'wall', Hall_of_the_mount_string_1, Hall_of_the_Mount_string_2)
     ain_King = room('ain King', 'ne', 'Hall_of_the_Mount', 'Chasm1', 'wall', 'wall', ain_King_string_1, ain_King_string_2)
-    cave_entrance = room('Cave entrance', 'nesw', 'plains3', 'featureless_plain', 'grill_room', 'featureless_plain', entrance_string_1, entrance_string_2)
-    grill_room = room('grill room', 'ns', 'cave_entrance', 'wall', 'debris_room', 'wall', grill_string_1, grill_string_2)
+    cave_entrance = room('Cave entrance', 'nesw', 'plains3', 'featureless_plain', 'grill_room', 'featureless_plain', entrance_string_1, entrance_string_2, aboveground = True)
+    grill_room = room('grill room', 'ns', 'cave_entrance', 'wall', 'debris_room', 'wall', grill_string_1, grill_string_2, aboveground = True)
     Chasm1 = room('north chasm', 'sw', 'wall', 'cliff', 'ain_King', 'Chasm2', Chasm1_string_1, Chasm1_string_2)
     Chasm2 = room('south chasm', 'ns', 'Chasm1', 'wall', 'Crystal_room', 'wall', Chasm2_string_2, chasm2_string_2)
     Crystal_Room = room('Crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_string_1, crystal_string_2)
@@ -115,18 +119,20 @@ def setup():
 def room_change(direction):
     #this is what controls where goes to where
     global player_room
+    global lamp_room
     room = player_room
-    if direction == 'n':
-        whichway = 'north'
-    elif direction== 'e':
-        whichway = 'east'
-    elif dirction == 's':
-        whichway = 'south'
-    elif direction == 'w':
-        whichway = 'west'
-    else:
-        print 'program failure'
-    player_room = getattr(room, whichway)
+    if getattr(room, aboveground) == True or (lamp_on == True and (lamp_room == room or lamp_room == 'player')):
+        if direction == 'n':
+            whichway = 'north'
+        elif direction== 'e':
+            whichway = 'east'
+        elif dirction == 's':
+            whichway = 'south'
+        elif direction == 'w':
+            whichway = 'west'
+        else:
+            print 'program failure'
+        player_room = getattr(room, whichway)
 
 def object_status(room):
     #controls where the objects are
