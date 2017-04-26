@@ -43,9 +43,10 @@ player_room = 'start'
 global player_inventory
 player_inventory = []
 
+
 class room():
     #rooms are the basic unit, in a grid formation. movement only possible in straight lines.
-    def __init__(self, name, direction, dir_N, dir_E, dir_S, dir_W):
+    def __init__(self, name, direction, dir_N, dir_E, dir_S, dir_W, entry1, entry2):
         self.names = name
         self.directions = direction
         #if the direction is not available, then input the specific failure for each impossible direction
@@ -54,15 +55,32 @@ class room():
         self.east = dir_E
         self.south = dir_S
         self.west = dir_W
+        self.long_description = entry1
+        self.short_description = entry2
 def setup():
     #make the roomz
-    debris_room = room('debris', 'ns', 'grill_room', 'wall', 'Hall_of_the_Mount', 'wall')
-    wall = room('wall', '', '', '', '', '')
-    cliff = room('cliff', '','','','')
-    start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest3', 'home')
-    wilderness = room('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest3')
-    forest3 = room('forest', 'nesw', 'start', 'wilderness', 'plains3', 'wilderness')
-    plains3 = room('plains', 'nesw', 'forest3', 'featureless_plain', 'cave_entrance', 'featureless_plain')
+    #first entry strings/look
+    debris_string_1 = 'You are in '
+    cliff_string = 'you fall down a cliff and break every bone in your body!'
+    wall_string = 'you walk into a wall. Ouch!'
+    start_string_1 = ''
+    wilderness_string = 'you are in a wilderness'
+    featureless_plain_string = 'you are on a featureless plain'
+    plains3_string = 'you are on a plain'
+    forest3_string = 'you are in a forest
+    #second entry strings
+    debris_string_2 = 'your are in debris room'
+    start_string_2 = ''
+    home_string_2 = 'you are in the cabin'
+    Hall_of_the_Mount = 'you are in the Hall of the Mount'
+    #rooms
+    debris_room = room('debris', 'ns', 'grill_room', 'wall', 'Hall_of_the_Mount', 'wall', debris_string_1, debris_string_2)
+    wall = room('wall', '', '', '', '', '', wall_string, wall_string)
+    cliff = room('cliff', '','','','', cliff_string, cliff_string)
+    start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest3', 'home', start_string_1, start_string_2)
+    wilderness = room('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest3', wilderness_string, wilderness_string)
+    forest3 = room('forest', 'nesw', 'start', 'wilderness', 'plains3', 'wilderness', forest3_string, forest3_string)
+    plains3 = room('plains', 'nesw', 'forest3', 'featureless_plain', 'cave_entrance', 'featureless_plain', plains3_string, plains3_string)
     home = room('Cabin', 'e', 'wall', 'start', 'wall', 'wall')
     featureless_plain = room('featureless plain', 'nesw', 'featureless_plain', 'featureless_plain', 'plains3', 'featureless_plain')
     Hall_of_the_Mount = room('Hall of the Mount', 'ns', 'debris_room', 'wall', 'ain_King', 'wall')
