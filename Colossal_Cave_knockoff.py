@@ -1,6 +1,7 @@
 #narrator will be sarcastic sometimes (if you keep trying to go north when you can't
 #suddenly says 'fine. you go north' (alternatives between falling and dying and
 #walking into a wall and etc)
+#note: This code is heavily based off of the game by Will Crowther, and the maze by that made by adam woods 
 global command_string_help
 command_string_help = ''' 
 #list of commands 
