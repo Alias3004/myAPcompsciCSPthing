@@ -34,6 +34,10 @@ z - sleep or skip turn?
 ? - help (list commands)
 '''
 instructions = '''
+This is an unnamed knockoff of the text-based adventure game 'colossal cave adventure,' created by william crowther, and later 
+edited by don woods. i am the narrator, your eyes, ears, etcetera. in order to take action, tell me what you would like to do. 
+however, i can only take single-letter commands, as this is not the full game. basic commands are directions, as well as 'use'
+commands. use commands will be followed by a query of what to use.
 '''
 global player_room
 player_room = 'start_room'
