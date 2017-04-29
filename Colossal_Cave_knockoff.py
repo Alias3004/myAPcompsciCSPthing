@@ -62,6 +62,18 @@ gold = item.nugget('gold', 'g', 'there is a gold nugget here!', '')
 coke_can = item.coke_zero('cylinder', 'c', 'there is a mysterious black cylinder here', '')
 quarter = item.qquarter('quarter', 'q', 'there is a quarter here!', '')
 
+def item_setup():
+    #sets up the items - where they go at first.
+
+def item_location(which_item, room_or_item):
+    #there are two variables for item location - a variable for each room storing which items are in it 
+    #(in this circumstance the player counts as a room), and a variable for each object storing where it is.
+    #this means that when the player enters a room, there is a fast check, and when the player cites a specific
+    #object, again, fast check. This function also controls the movement of items, not just the reference of them.
+    
+    
+    
+    
 class room():
     #rooms are the basic unit, in a grid formation. movement only possible in straight lines.
     def __init__(self, name, direction, dir_N, dir_E, dir_S, dir_W, entry1, entry2, aboveground = False):
@@ -130,7 +142,6 @@ def setup():
     Crystal_Room = room('Crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_string_1, crystal_string_2)
     Twilight_Zone = room('Twilight Zone', 'nesw', 'ugh', 'ugh', 'ugh', 'ugh', Twilight_zone_string_1, Twilight_zone_string_2)
     ugh = room('ugh', 'nesw', 'Twilight_Zone', 'Twilight_Zone', 'Twilight_Zone', 'Maze5', ugh_string, ugh_string)
-    
     
     
     
