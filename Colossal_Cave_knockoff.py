@@ -6,7 +6,7 @@ global command_string_help
 command_string_help = ''' 
 #list of commands 
 a - apply (use)? 
-b - backstab? back?
+b - blast (no dynamite)
 c - cheat? climb?
 d - drop (followed by 'drop what' prompt)
 e - east 
@@ -25,7 +25,7 @@ q - question (talk function? hint?)
 r - repeat? 
 s - south 
 t - talk (allows you to input a string that isn't a command, which you will say)
-u - use
+u - use (followed by 'use what' prompt)
 v - IDK 
 w - west 
 x - xyzzy or extended command (room specific?)
@@ -37,7 +37,7 @@ instructions = '''
 This is an unnamed knockoff of the text-based adventure game 'colossal cave adventure,' created by william crowther, and later 
 edited by don woods. i am the narrator, your eyes, ears, etcetera. in order to take action, tell me what you would like to do. 
 however, i can only take single-letter commands, as this is not the full game. basic commands are directions, as well as 'use'
-commands. use commands will be followed by a query of what to use.
+commands. use commands will be followed by a query of what to use. please keep your arms and legs inside the program at all times.
 '''
 global player_room
 player_room = 'start_room'
@@ -47,9 +47,20 @@ player_room = 'start_room'
 
 global player_inventory
 player_inventory = []
-global lamp_room = 'home'
 global lamp_on
 lamp_on = False
+class item():
+    def __init__(self, name, letter, there_is, there_is_2):
+        self.names = name
+        self.call = letter
+        self.description = there_is
+        self.alternate_description = there_is_2
+lamp = item.llamp('lamp', 'l', 'there is a lamp here', 'there is a lamp shining nearby')
+rod = item.rrod('rod', 'r', 'there is a 3-foot steel rod here', '')
+silver = item.ssilver('silver', 's', 'there are bars of silver here!', '')
+gold = item.nugget('gold', 'g', 'there is a gold nugget here!', '')
+coke_can = item.coke_zero('cylinder', 'c', 'there is a mysterious black cylinder here', '')
+quarter = item.qquarter('quarter', 'q', 'there is a quarter here!', '')
 
 class room():
     #rooms are the basic unit, in a grid formation. movement only possible in straight lines.
