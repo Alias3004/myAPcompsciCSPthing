@@ -50,17 +50,19 @@ player_inventory = []
 global lamp_on
 lamp_on = False
 class item():
-    def __init__(self, name, letter, there_is, there_is_2):
+    def __init__(self, name, letter, there_is, there_is_2, ID_shortcut):
         self.names = name
         self.call = letter
         self.description = there_is
         self.alternate_description = there_is_2
-lamp = item.llamp('lamp', 'l', 'there is a lamp here', 'there is a lamp shining nearby')
-rod = item.rrod('rod', 'r', 'there is a 3-foot steel rod here', '')
-silver = item.ssilver('silver', 's', 'there are bars of silver here!', '')
-gold = item.nugget('gold', 'g', 'there is a gold nugget here!', '')
-coke_can = item.coke_zero('cylinder', 'c', 'there is a mysterious black cylinder here', '')
-quarter = item.qquarter('quarter', 'q', 'there is a quarter here!', '')
+        self.label = ID_shortcut
+lamp = item.llamp('lamp', 'l', 'there is a lamp here', 'there is a lamp shining nearby', 'lamp')
+rod = item.rrod('rod', 'r', 'there is a 3-foot steel rod here', '', 'rod')
+silver = item.ssilver('silver bars', 's', 'there are bars of silver here!', '', 'silver')
+gold = item.nugget('gold', 'g', 'there is a gold nugget here!', '', 'gold')
+coke_can = item.coke_zero('black cylinder', 'c', 'there is a mysterious black cylinder here', '', 'coke_can')
+quarter = item.qquarter('silver coin', 'q', 'there is a quarter here!', '', 'quarter')
+
 
 def item_setup():
     #sets up the items - where they go at first.
