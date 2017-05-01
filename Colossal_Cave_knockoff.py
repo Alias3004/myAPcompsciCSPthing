@@ -223,14 +223,52 @@ def movement (room, times, direction):
         derp = True
     return derp
 
+def check_inventory(call_type, subject_item):
+    #checks if the object being referenced is in the inventory
+    #or lists the inventory 
+    if call_type == 0:
+        print player_inventory
+    else:
+        if subject_item in player_inventory:
+            return True
+        else:
+            return False
         
-            
+def use_place_drop(answer):
+    subject_item_var = raw_input('what do you want to do this with?')
+    if check_inventory(1, subject_item_var) == True:
+        if answer == 'u':
+            return 'u'
+        elif answer == 'd':
+            return 'd'
+        elif answer == 'p':
+            return 'p'
+        else:
+            print 'program failure'
+    else:
+        print "you don't have that"
+        
+def get_action():
+    #ugh
+    return 0
         
     
-    
-    
+def action(answer):
+    #which action (not T/F)
+    if answer in 'nesw':
+        movement(player_room, 1, answer)
+    elif answer in 'upd':
+        use_place_drop(answer)
+    elif answer == 'g':
+        get_action()
+    elif answer = 't':
+        #continue with possibilities
+        return 0
+    else:
+        print 'program failure'
         
-   
+        
+
 def possible_answer(answer, state):
     #checks whether the player's response is valid
     #state 0 is true/false, state 1 is direction or other
@@ -241,9 +279,9 @@ def possible_answer(answer, state):
         else:
             return 0
     elif state == 1: #normal answer
-        return 1
+        action(answer)
     else:
-        return 1
+        print 'program failure'
         
 def Xyzzy_Xyzzy(room):
     #Xyzzy teleport function
