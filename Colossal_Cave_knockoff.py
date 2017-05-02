@@ -383,7 +383,7 @@ def action(answer):
     #which action (not T/F)
     if answer == 'xyzzy':
         Xyzzy_Xyzzy(getattr(player1, player_room))
-    elif len(answer) > 1
+    elif len(answer) != 1
         print "i don't understand that!"
     elif answer in 'nesw':
         room_change(answer)
