@@ -50,18 +50,21 @@ player_inventory = []
 global lamp_on
 lamp_on = False
 class item():
-    def __init__(self, name, letter, there_is, there_is_2, ID_shortcut):
+    def __init__(self, name, letter, there_is, ID_shortcut, start_location):
         self.names = name
         self.call = letter
         self.description = there_is
-        self.alternate_description = there_is_2
         self.label = ID_shortcut
-lamp = item.llamp('lamp', 'l', 'there is a lamp here', 'there is a lamp shining nearby', 'lamp')
-rod = item.rrod('rod', 'r', 'there is a 3-foot steel rod here', '', 'rod')
-silver = item.ssilver('silver bars', 's', 'there are bars of silver here!', '', 'silver')
-gold = item.nugget('gold', 'g', 'there is a gold nugget here!', '', 'gold')
-coke_can = item.coke_zero('black cylinder', 'c', 'there is a mysterious black cylinder here', '', 'coke_can')
-quarter = item.qquarter('silver coin', 'q', 'there is a quarter here!', '', 'quarter')
+        self.location = start_location
+    def item_location(new_location):
+        self.location = new_location
+        
+lamp = item.llamp('lamp', 'l', 'there is a lamp here', 'lamp', 'home')
+rod = item.rrod('rod', 'r', 'there is a 3-foot steel rod here', 'rod', 'debris_room')
+silver = item.ssilver('silver bars', 's', 'there are bars of silver here!', 'silver', '')
+gold = item.nugget('gold', 'g', 'there is a gold nugget here!', 'gold', '')
+coke_can = item.coke_zero('black cylinder', 'c', 'there is a mysterious black cylinder here', 'coke_can', '')
+quarter = item.qquarter('silver coin', 'q', 'there is a quarter here!', 'quarter', '')
 
 
 def item_setup():
@@ -79,32 +82,6 @@ def item_location_1(answer, room_or_item):
     #(in this circumstance the player counts as a room), and a variable for each object storing where it is.
     #this means that when the player enters a room, there is a fast check, and when the player cites a specific
     #object, again, fast check. This function also controls the movement of items, not just the reference of them.
-    a = ''
-    b = ''
-    c = 'coke_can_loc'
-    d = 'dynamite_loc'
-    e = 'emerald_loc'
-    f = ''
-    g = 'gold_loc'
-    h = ''
-    i = ''
-    j = ''
-    k = 'keys_loc'
-    l = 'lamp_loc'
-    m = ''
-    n = ''
-    o = ''
-    p = 'pocketwatch_loc'
-    q = 'quarter_loc'
-    r = 'rod_loc'
-    s = 'silver_loc'
-    t = 'thingimajig_loc'
-    u = ''
-    v = ''
-    w = 'western_loc'
-    x = 'xylophone_loc'
-    y = 'yo-yo_loc'
-    z = ''
     
     
     
@@ -123,8 +100,13 @@ class room():
         self.short_description = entry2
         self.aboveground = aboveground
         self.entered = False
+        self.inventory = []
     def entered_true(self, entered):
         self.entered = True
+    def room_inventory_add(self, item):
+        self.room_inventory.append(item)
+    def room_inventory_remove(self, item):
+        self.room_inventory.remove(item)
         
 def setup():
     #make the roomz
@@ -183,7 +165,13 @@ def setup():
     
     
 def enter_room():
-    
+    global player_room
+    if getattr(player_room, entered) == False:
+        print getattr(player_room, long_description)
+    else:
+        print getattr(player_room, short_description)
+    for items in getattr(player_room, room_inventory):
+        print getattr(item, description)
     
 
 def room_change(direction):
