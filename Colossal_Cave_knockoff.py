@@ -192,11 +192,20 @@ def enter_room(derp=False):
             print 'program failure'
     
 
+    
 def room_change(direction, derp=False):
     #this is what controls where goes to where
     
     room = getattr(player1, player_room)
-    if getattr(room, aboveground) == True or (lamp_on == True and (getattr(lamp, location) == room or lamp in getattr(player1, player_inventory)):
+    global lamp_on
+    if lamp_on == True and getattr(lamp, location)== room:
+        light_instance = True
+    elif lamp in getattr(player1, player_inventory) and lamp_on == True:
+        light_instance = True
+    else:
+        light_instance = False
+        
+    if getattr(room, aboveground) == True or light_instance = True:
         if direction == 'n':
             whichway = 'north'
         elif direction== 'e':
@@ -212,9 +221,12 @@ def room_change(direction, derp=False):
         player1.room_change('pit_death')
     if derp == False:                                          
         enter_room()
-    if derp == True
+    elif derp == True:
         enter_room(derp=True)
+    else:
+        print 'program failure'
 
+                                              
     
 def startup():
 #display commands at startup
@@ -237,6 +249,7 @@ def startup():
     
 def help():
 #the help thing, called by h or ?
+    global command_string_help                                          
     if raw_input('list commands? y n')== 'y':
         print command_string_help
     else:
