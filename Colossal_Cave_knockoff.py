@@ -137,13 +137,13 @@ def setup():
     plains3_string_1 = 'you are on a plain. There is a featureless plain to the east and west, a forest to the north, and what looks like a rock pile to the south'
     forest3_string_1 = 'you are in a forest. There is a wilderness to the east and west, and what looks to be a clearing to the south. North of you is the stream and the cabin.'
     home_string_1 = 'you are in a small cabin, with three walls and a door on the east side. There is a small fountain here.'
-    Hall_of_the_mount_string_1 = 'You are in a large, long hallway stretching to the south. North of you is a narrowing passage. Above you is a sign stretching into the distance. You can read "Hall of the Mount"'
-    ain_King_string_1 = 'You are in a large, long hallway stretching to the north. To the west there is a small gateway leading to a chasm. Above you is a sign stretching into the distance. You can read "ain king"'
+    hall_of_the_mount_string_1 = 'You are in a large, long hallway stretching to the south. North of you is a narrowing passage. Above you is a sign stretching into the distance. You can read "Hall of the Mount"'
+    ain_king_string_1 = 'You are in a large, long hallway stretching to the north. To the west there is a small gateway leading to a chasm. Above you is a sign stretching into the distance. You can read "ain king"'
     entrance_string_1 = 'You are at a large pile of rocks leading to a cave, with a large grill. Fortunately, it has a hole in it. There is a featureless plain to the east and west, and a plains to the north.'
     grill_string_1 = 'You are in the room inside of the grill. There is light here, but to the south it is dark.'
     chasm1_string_1 = 'you are at the north edge of a gaping chasm, too wide to jump. The bottom is out of sight. There is a sign here depicting what appears to be a tribal shaman performing a ritual with a stick - it is very crude. To the east is a portal to "ain King"'
     chasm2_string_1 = 'you are at the south edge of a gaping chasm, too wide to jump. To the south is a cave which appears to glitter faintly.'
-    Twilight_zone_string_1 = 'welcome to the Twilight Zone'
+    twilight_zone_string_1 = 'welcome to the Twilight Zone'
     death_string_1 = "Now you've done it! You've gone and got yourself killed! I can't believe this! Now, I haven't done this before, so be cautious - but would you like me to try and reincarnate you?"
     #second entry strings
     debris_string_2 = 'your are in debris room'
@@ -151,11 +151,11 @@ def setup():
     forest3_string_2 = 'you are in a forest'
     start_string_2 = 'You are in a small clearing near a stream'
     home_string_2 = 'you are in the cabin'
-    Hall_of_the_Mount_string_2 = 'you are in the Hall of the Mount'
+    hall_of_the_mount_string_2 = 'you are in the Hall of the Mount'
     ain_king_string_2 = 'you are in "ain King"'
     entrance_string_2 = 'you are at the cave entrance'
     grill_string_2 = 'You are in the grill room'
-    Twilight_zone_string_2 = 'you are in the Twilight Zone'
+    twilight_zone_string_2 = 'you are in the Twilight Zone'
     death_string_2 = "You did it again. Seriously, you need to be more careful if you're going to survive here! Would you like me to try and reincarnate you?"
     ugh_string = 'Ugh'
     big_room_string = 'you are in a big room'
@@ -168,7 +168,7 @@ def setup():
     
     #rooms
     pit_death = room('death', '', '', '', '', '', death_string_1, death_string_2)
-    debris_room = room('debris', 'ns', 'grill_room', 'wall', 'Hall_of_the_Mount', 'wall', debris_string_1, debris_string_2)
+    debris_room = room('debris', 'ns', 'grill_room', 'wall', 'hall_of_the_mount', 'wall', debris_string_1, debris_string_2)
     wall = room('wall', '', '', '', '', '', wall_string, wall_string)
     cliff = room('cliff', '','','','','', cliff_string, cliff_string)
     start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest3', 'home', start_string_1, start_string_2, aboveground = True)
@@ -177,15 +177,15 @@ def setup():
     plains3 = room('plains', 'nesw', 'forest3', 'featureless_plain', 'cave_entrance', 'featureless_plain', plains3_string_1, plains3_string_2, aboveground = True)
     home = room('Cabin', 'e', 'wall', 'start_room', 'wall', 'wall', home_string_1, home_string_2, aboveground = True)
     featureless_plain = room('featureless plain', 'nesw', 'featureless_plain', 'featureless_plain', 'plains3', 'featureless_plain', featureless_string, featureless_string, aboveground = True)
-    Hall_of_the_Mount = room('Hall of the Mount', 'ns', 'debris_room', 'wall', 'ain_King', 'wall', Hall_of_the_mount_string_1, Hall_of_the_Mount_string_2)
-    ain_King = room('ain King', 'ne', 'Hall_of_the_Mount', 'Chasm1', 'wall', 'wall', ain_King_string_1, ain_King_string_2)
+    hall_of_the_mount = room('hall of the mount', 'ns', 'debris_room', 'wall', 'ain_king', 'wall', hall_of_the_mount_string_1, hall_of_the_mount_string_2)
+    ain_king = room('ain king', 'ne', 'hall_of_the_mount', 'chasm1', 'wall', 'wall', ain_king_string_1, ain_king_string_2)
     cave_entrance = room('Cave entrance', 'nesw', 'plains3', 'featureless_plain', 'grill_room', 'featureless_plain', entrance_string_1, entrance_string_2, aboveground = True)
     grill_room = room('grill room', 'ns', 'cave_entrance', 'wall', 'debris_room', 'wall', grill_string_1, grill_string_2, aboveground = True)
-    Chasm1 = room('north chasm', 'sw', 'wall', 'cliff', 'cliff', 'ain_King', Chasm1_string_1, Chasm1_string_2)
-    Chasm2 = room('south chasm', 'ns', 'Cliff', 'wall', 'Crystal_room', 'wall', Chasm2_string_2, chasm2_string_2)
-    Crystal_Room = room('Crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_string_1, crystal_string_2)
-    Twilight_Zone = room('Twilight Zone', 'nesw', 'ugh', 'ugh', 'ugh', 'ugh', Twilight_zone_string_1, Twilight_zone_string_2)
-    ugh = room('ugh', 'nesw', 'Twilight_Zone', 'Twilight_Zone', 'Twilight_Zone', 'Maze5', ugh_string, ugh_string)
+    chasm1 = room('north chasm', 'sw', 'wall', 'cliff', 'cliff', 'ain_King', chasm1_string_1, chasm1_string_2)
+    chasm2 = room('south chasm', 'ns', 'Cliff', 'wall', 'Crystal_room', 'wall', chasm2_string_2, chasm2_string_2)
+    crystal_room = room('crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_string_1, crystal_string_2)
+    twilight_zone = room('twilight zone', 'nesw', 'ugh', 'ugh', 'ugh', 'ugh', twilight_zone_string_1, twilight_zone_string_2)
+    ugh = room('ugh', 'nesw', 'twilight_zone', 'twilight_zone', 'twilight_zone', 'maze_5', ugh_string, ugh_string)
     Big_room = room('Big room', 'junction', 'wall', '', 'wall', 'crystal_room', big_room_string, big_room_string)
     junction = room('junction', 'nsw', 'strange room', 'big_room', 'map_room', 'wall', junction_string_1, junction_string_2)
     strange_room = room('chem lab', 's', 'wall', 'wall', 'junction', 'wall', strange_room_string, strange_room_string)
@@ -385,7 +385,7 @@ def get_action():
 def action(answer):
     #which action (not T/F)
     if answer == 'xyzzy':
-        Xyzzy_Xyzzy(getattr(player1, player_room))
+        xyzzy_xyzzy(getattr(player1, player_room))
     elif len(answer) != 1:
         print ("i don't understand that!")
     elif answer in 'nesw':
@@ -410,7 +410,7 @@ def action(answer):
         
 
 
-def Xyzzy_Xyzzy():
+def xyzzy_xyzzy():
     #Xyzzy teleport function
     room = getattr(player1, player_room)
     if room == 'debris':
@@ -421,7 +421,7 @@ def Xyzzy_Xyzzy():
         print ('nothing happens')
         
         
-def Colossal_cave_knockoff():
+def colossal_cave_knockoff():
     setup()
     startup()
     while getattr(player1, player_status) == 'alive':
