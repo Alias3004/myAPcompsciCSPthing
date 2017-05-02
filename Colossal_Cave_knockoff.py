@@ -65,16 +65,8 @@ silver = item.ssilver('silver bars', 's', 'there are bars of silver here!', 'sil
 gold = item.nugget('gold', 'g', 'there is a gold nugget here!', 'gold', '')
 coke_can = item.coke_zero('black cylinder', 'c', 'there is a mysterious black cylinder here', 'coke_can', '')
 quarter = item.qquarter('silver coin', 'q', 'there is a quarter here!', 'quarter', '')
+keys = item.kkeys('rusty keys', 'k', 'there are some keys here', 'keys', 'home')
 
-
-def item_setup():
-    #sets up the items - where they go at first.
-    lamp_loc = 'start_room'
-    rod_loc = 'debris_room'
-    silver_loc = ''
-    gold_loc = ''
-    coke_can_loc = ''
-    quarter_loc = ''
     
 
 def item_location_1(answer, room_or_item):
@@ -161,7 +153,8 @@ def setup():
     Crystal_Room = room('Crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_string_1, crystal_string_2)
     Twilight_Zone = room('Twilight Zone', 'nesw', 'ugh', 'ugh', 'ugh', 'ugh', Twilight_zone_string_1, Twilight_zone_string_2)
     ugh = room('ugh', 'nesw', 'Twilight_Zone', 'Twilight_Zone', 'Twilight_Zone', 'Maze5', ugh_string, ugh_string)
-    
+    #set up initial inventory
+    home.room_inventory_add(['lamp', 'keys'])
     
     
 def enter_room():
