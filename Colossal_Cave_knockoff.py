@@ -326,39 +326,32 @@ def get_action():
     
 def action(answer):
     #which action (not T/F)
-    if answer in 'nesw':
-        movement(player_room, 1, answer)
-    elif answer in 'upd':
-        use_place_drop(answer)
+    if answer == 'xyzzy':
+        Xyzzy_Xyzzy(getattr(player1, player_room))
+    elif len(answer) > 1
+        print "i don't understand that!"
+    elif answer in 'nesw':
+        room_change(answer)
+    elif answer in 'pd':
+        place_drop(answer)
     elif answer == 'g':
         get_action()
-    elif answer == 'x':
-        #continue with possibilities
-        return 0
+    elif answer == 'u':
+        use_action()
+    elif answer == 't':
+        print "sorry, you can't talk yet"
+    elif answer == 'b':
+        print 'blasting requires dynamite'
+    elif answer == 'r':
+        enter_room()
+    elif answer == 'l':
+        enter_room()
     else:
-        print 'program failure'
+        print "sorry, that hasn't been implemented yet"
         
         
 
-def possible_answer(answer, state):
-    #checks whether the player's response is valid
-    #state 0 is true/false, state 1 is direction or other
-    #may add extended commands later
-    if state == 0: #true/false
-        if answer == 'y' or answer == 'n':
-            return 1
-        else:
-            return 0
-    elif state == 1: #normal answer
-        if answer == 'xyzzy':
-            Xyzzy_Xyzzy(player_room)
-        elif len(answer)==1:
-            action(answer)
-        else:
-            print "I didn't understand that"
-    else:
-        print 'program failure'
-        
+
 def Xyzzy_Xyzzy(room):
     #Xyzzy teleport function
     if room == 'debris':
