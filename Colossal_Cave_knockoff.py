@@ -167,8 +167,8 @@ def setup():
     map_room_string_1 = 'you are in a room with a sign that says map room. there are the remains of a map on the wall, but most of it has been scratched out. you can make out some writing - it reads "beware of maze"'
     map_room_string_2 = 'you are in the map room'
     maze_string = 'you are in a maze of many passages, all alike'
-    crystal_room_string_1 = 'you are in a room made of sparkling crystals. there are passages to the north, south, east, and west.'
-    crystal_room_string_2 = 'you are in the crystal room'
+    crystal_string_1 = 'you are in a room made of sparkling crystals. there are passages to the north, south, east, and west.'
+    crystal_string_2 = 'you are in the crystal room'
     
     #rooms
     pit_death = room('death', '', '', '', '', '', death_string_1, death_string_2)
