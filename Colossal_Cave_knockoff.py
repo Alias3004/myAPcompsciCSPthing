@@ -130,37 +130,37 @@ class room():
 def setup():
     #make the roomz
     class room():
-    #rooms are the basic unit, in a grid formation. movement only possible in straight lines.
-    def __init__(self, name, direction, dir_N, dir_E, dir_S, dir_W, entry1, entry2, aboveground = False):
-        self.names = name
-        self.directions = direction
-        #if the direction is not available, then input the specific failure for each impossible direction
-        #e.g., wall, cliff, etcetera
-        self.north = dir_N
-        self.east = dir_E
-        self.south = dir_S
-        self.west = dir_W
-        self.long_description = entry1
-        self.short_description = entry2
-        self.aboveground = aboveground
-        self.entered = False
-        self.room_inventory = []
-        self.placeholder = 1
-    def entered_true(self, entered):
-        self.entered = True
-    def room_inventory_add(self, item):
-        self.room_inventory.append(item)
-    def room_inventory_remove(self, item):
-        self.room_inventory.remove(item)
-    def make_bridge(self):
-        if self.names == 'north chasm' or self.names == 'south chasm':
-            self.long_description.append('a bridge now spans the chasm')
-            if self.names == 'north chasm':
-                self.south = 'chasm2'
-            else:
-                self.north = 'chasm1'
-        else:
+        #rooms are the basic unit, in a grid formation. movement only possible in straight lines.
+        def __init__(self, name, direction, dir_N, dir_E, dir_S, dir_W, entry1, entry2, aboveground = False):
+            self.names = name
+            self.directions = direction
+            #if the direction is not available, then input the specific failure for each impossible direction
+            #e.g., wall, cliff, etcetera
+            self.north = dir_N
+            self.east = dir_E
+            self.south = dir_S
+            self.west = dir_W
+            self.long_description = entry1
+            self.short_description = entry2
+            self.aboveground = aboveground
+            self.entered = False
+            self.room_inventory = []
             self.placeholder = 1
+        def entered_true(self, entered):
+            self.entered = True
+        def room_inventory_add(self, item):
+            self.room_inventory.append(item)
+        def room_inventory_remove(self, item):
+            self.room_inventory.remove(item)
+        def make_bridge(self):
+            if self.names == 'north chasm' or self.names == 'south chasm':
+                self.long_description.append('a bridge now spans the chasm')
+                if self.names == 'north chasm':
+                    self.south = 'chasm2'
+                else:
+                    self.north = 'chasm1'
+            else:
+                self.placeholder = 1
     #first entry strings/look
     
     debris_string_1 = 'You are in a room full of junk and debris. There is an awkward slope to the north, and a widening passage to the south. There is a rock here with the letters XYZZY'
