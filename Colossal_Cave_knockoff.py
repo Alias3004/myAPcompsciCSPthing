@@ -158,6 +158,14 @@ def setup():
     Twilight_zone_string_2 = 'you are in the Twilight Zone'
     death_string_2 = "You did it again. Seriously, you need to be more careful if you're going to survive here! Would you like me to try and reincarnate you?"
     ugh_string = 'Ugh'
+    big_room_string = 'you are in a big room'
+    junction_string_1 = 'you are at a junction. to the north is a thin passage. to the south is the big room. to your west is a strange light'
+    junction_string_2 = 'you are at a n/s/w junction'
+    strange_room_string = 'you are in a strange room'
+    map_room_string_1 = 'you are in a room with a sign that says map room. there are the remains of a map on the wall, but most of it has been scratched out. you can make out some writing - it reads "beware of maze"'
+    map_room_string_2 = 'you are in the map room'
+    maze_string = 'you are in a maze of many passages, all alike'
+    
     #rooms
     pit_death = room('death', '', '', '', '', '', death_string_1, death_string_2)
     debris_room = room('debris', 'ns', 'grill_room', 'wall', 'Hall_of_the_Mount', 'wall', debris_string_1, debris_string_2)
@@ -178,9 +186,38 @@ def setup():
     Crystal_Room = room('Crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_string_1, crystal_string_2)
     Twilight_Zone = room('Twilight Zone', 'nesw', 'ugh', 'ugh', 'ugh', 'ugh', Twilight_zone_string_1, Twilight_zone_string_2)
     ugh = room('ugh', 'nesw', 'Twilight_Zone', 'Twilight_Zone', 'Twilight_Zone', 'Maze5', ugh_string, ugh_string)
+    Big_room = room('Big room', 'junction', 'wall', '', 'wall', 'crystal_room', big_room_string, big_room_string)
+    junction = room('junction', 'nsw', 'strange room', 'big_room', 'map_room', 'wall', junction_string_1, junction_string_2)
+    strange_room = room('chem lab', 's', 'wall', 'wall', 'junction', 'wall', strange_room_string, strange_room_string)
+    map_room = room('map room', 'ew', 'wall', 'junction', 'wall', 'maze_1', map_room_string_1, map_room_string_2)
+    maze_1 = room('maze entrance', 'nesw', 'maze_1', 'map_room', 'maze_4', 'maze_2', maze_string, maze_string)
+    maze_2= room('maze 2', 'nesw', 'maze_1', 'maze_5', 'maze_2', 'maze_3', maze_string, maze_string)
+    maze_3= room('maze 3', 'nesw', 'maze_2', 'maze_3', 'maze_6', 'maze_4', maze_string, maze_string)
+    maze_4= room('maze 4', 'nesw', 'maze_2', 'maze_3', 'maze_1', 'maze_4', maze_string, maze_string)
+    maze_5= room('maze 5', 'nesw', 'maze_12', 'maze_5', 'maze_2', 'maze_5', maze_string, maze_string)
+    maze_6= room('maze 6', 'nesw', 'maze_3', 'maze_7', 'maze_6', 'maze_8', maze_string, maze_string)
+    maze_7= room('maze 7', 'nesw', 'maze_7', 'maze_7', 'maze_7', 'maze_6', maze_string, maze_string)
+    maze_8= room('maze 8', 'nesw', 'maze_14', 'maze_9', 'maze_6', 'maze_8', maze_string, maze_string)
+    maze_9= room('maze 9', 'nesw', 'maze_12', 'maze_10', 'maze_13', 'maze_8', maze_string, maze_string)
+    maze_10= room('maze 10', 'nesw', 'maze_9', 'maze_9', 'maze_11', 'maze_10', maze_string, maze_string)
+    maze_11= room('maze 11', 'nesw', 'maze_10', 'maze_13', 'maze_11', 'maze_11', maze_string, maze_string)
+    maze_12= room('maze 12', 'nesw', 'maze_12', 'maze_9', 'maze_9', 'maze_13', maze_string, maze_string)
+    maze_13= room('maze 13', 'nesw', 'maze_18', 'maze_7', 'maze_9', 'maze_12', maze_string, maze_string)
+    maze_14= room('maze 14', 'nesw', 'maze_8', 'maze_16', 'maze_17', 'maze_8', maze_string, maze_string)
+    maze_15= room('maze 15', 'nesw', 'maze_17', 'maze_15', 'maze_16', 'maze_16', maze_string, maze_string)
+    maze_16= room('maze 16', 'nesw', 'maze_15', 'maze_14', 'maze_16', 'maze_17', maze_string, maze_string)
+    maze_17= room('maze 17', 'nesw', 'maze_17', 'maze_14', 'maze_16', 'maze_15', maze_string, maze_string)
+    maze_18 = room('maze 18', 'nesw', 'maze_14', 'maze_17', 'maze_6', 'maze_15', maze_string, maze_string)
+    
     #set up initial inventory
     home.room_inventory_add(['lamp', 'keys'])
+    maze_18.room_inventory_add('silver')
+    debris_room.room_inventory_add('rod')
+    crystal_room.room_inventory_add('gold')
+    strange_room.room_inventory_add('coke_can')
+    junction.room_inventory_add('quarter')
     
+                              
     
 def enter_room(derp=False):
     if getattr(player1, player_room) == 'pit_death':
@@ -191,6 +228,7 @@ def enter_room(derp=False):
             player1.room_change('home')
             lamp.item_location('start_room')
             start_room.room_inventory_add('lamp')
+            enter_room()
         else:
             print 'you died'
             player1.die
