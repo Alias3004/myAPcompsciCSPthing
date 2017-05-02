@@ -61,13 +61,13 @@ class player():
     def live(self):
         self.player_status = 'alive'
     def go_west(self):
-        self.player_room = getattr(getattr(player1, player_room), west)
+        self.player_room = eval(player1.player_room).west
     def go_east(self):
-        self.player_room = getattr(getattr(player1, player_room), east)
+        self.player_room = eval(player1.player_room).east
     def go_north(self):
-        self.player_room = getattr(getattr(player1, player_room), north)
+        self.player_room = eval(player1.player_room).north
     def go_south(self):
-        self.player_room = getattr(getattr(player1, player_room), south)
+        self.player_room = eval(player1.player_room).south
         
 player1 = player()
 
@@ -129,7 +129,40 @@ class room():
         
 def setup():
     #make the roomz
+    class room():
+    #rooms are the basic unit, in a grid formation. movement only possible in straight lines.
+    def __init__(self, name, direction, dir_N, dir_E, dir_S, dir_W, entry1, entry2, aboveground = False):
+        self.names = name
+        self.directions = direction
+        #if the direction is not available, then input the specific failure for each impossible direction
+        #e.g., wall, cliff, etcetera
+        self.north = dir_N
+        self.east = dir_E
+        self.south = dir_S
+        self.west = dir_W
+        self.long_description = entry1
+        self.short_description = entry2
+        self.aboveground = aboveground
+        self.entered = False
+        self.room_inventory = []
+        self.placeholder = 1
+    def entered_true(self, entered):
+        self.entered = True
+    def room_inventory_add(self, item):
+        self.room_inventory.append(item)
+    def room_inventory_remove(self, item):
+        self.room_inventory.remove(item)
+    def make_bridge(self):
+        if self.names == 'north chasm' or self.names == 'south chasm':
+            self.long_description.append('a bridge now spans the chasm')
+            if self.names == 'north chasm':
+                self.south = 'chasm2'
+            else:
+                self.north = 'chasm1'
+        else:
+            self.placeholder = 1
     #first entry strings/look
+    
     debris_string_1 = 'You are in a room full of junk and debris. There is an awkward slope to the north, and a widening passage to the south. There is a rock here with the letters XYZZY'
     cliff_string = 'you fall down a cliff and break every bone in your body!'
     wall_string = 'you walk into a wall. Ouch! you broke your skull!'
@@ -243,16 +276,16 @@ def enter_room(derp=False):
         if derp==False:
             enter_rooom_instance = player1.player_room
             if enter_room_instance.entered == False:
-                print_instance_enter = enter_room_instance.long_description
+                print_instance_enter = eval(player1.player_room).long_description
                 print(print_instance_enter)
             else:
-                print_instance_enter = enter_room_instance.short_description
+                print_instance_enter = eval(player1.player_room).short_description
                 print(print_instance_enter)
-            for items in enter_room_instance.room_inventory:
+            for items in eval(player1.player_room).room_inventory:
                 print_instance_items = item,description
                 print(print_instance_items)
         elif derp==True:
-            enter_room_instance.short_description
+            eval(player1.player_room).short_description
             player1.room_change(pit_death)
             enter_room()
         else:
@@ -271,9 +304,9 @@ def room_change(direction, derp=False):
     else:
         light_instance = False
         
-    if getattr(room, aboveground) == True or light_instance == True:
+    if room.aboveground == True or light_instance == True:
         room_change_instance = player1.player_room
-        if direction in room_change_instance.directions:
+        if direction in eval(player1.player_room).directions:
             derp_yes = False
             iterations = 0
             if direction == 'n':
@@ -344,12 +377,12 @@ def help():
 
         
 def place_drop():
-    room_instance_drop = getattr(player1, player_room)
+    room_instance_drop = player1.player_room
     drop_instance = raw_input('what do you want to place/drop?')
     if drop_instance in player1.player_inventory:
         drop_instance.location(player1.player_room)
         player1.player_inventory_remove(drop_instance)
-        room_instance_drop.room_inventory_add(drop_instance)
+        eval(player1.player_room).room_inventory_add(drop_instance)
     else:
         print ("you don't have that")
         
@@ -361,7 +394,7 @@ def use_item():
             global lamp_on
             lamp_on = True
         elif use_instance == 'rod':
-            if rooom_instance_use == chasm1 or room_instance_use == chasm2:
+            if player1.player_room == chasm1 or player1.player_room == chasm2:
                 chasm1.make_bridge()
                 chasm2.make_bridge()
         else:
@@ -376,10 +409,10 @@ def get_action():
     get_instance = raw_input('what would you like to get?')
     if get_instance == 'c' and len(get_instance)== 1:
         print ('nevermind')
-    elif get_instance in room_instance_get.room_inventory:
+    elif get_instance in eval(player1.player_room).room_inventory:
         get_instance.location('player_inventory')
         player1.player_inventory_add(get_instance)
-        room_instance_get.room_inventory_remove(get_instance)
+        eval(player1.player_room).room_inventory_remove(get_instance)
     elif get_instance in player1.player_inventory:
         print ('you already have that!')
     else:
