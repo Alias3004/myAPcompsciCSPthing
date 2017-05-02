@@ -226,10 +226,10 @@ def setup():
                               
     
 def enter_room(derp=False):
-    if getattr(player1, player_room) == 'pit_death':
+    if player1.player_room == 'pit_death':
         death_instance = raw_input()
         if death_instance == 'y':
-            room_instance = getattr(player1, player_room)
+            room_instance = player1.player_room
             room_instance.room_inventory_remove('lamp')
             player1.room_change('home')
             lamp.item_location('start_room')
@@ -241,17 +241,18 @@ def enter_room(derp=False):
             
     else:        
         if derp==False:
-            if getattr(getattr(player1, player_room), entered) == False:
-                print_instance_enter = getattr(getattr(player1, player_room), long_description)
+            enter_rooom_instance = player1.player_room
+            if enter_room_instance.entered == False:
+                print_instance_enter = enter_room_instance.long_description
                 print(print_instance_enter)
             else:
-                print_instance_enter = getattr(getattr(player1, player_room), short_description)
+                print_instance_enter = enter_room_instance.short_description
                 print(print_instance_enter)
-            for items in getattr(getattr(player1, player_room), room_inventory):
-                print_instance_items = getattr(item, description)
+            for items in enter_room_instance.room_inventory:
+                print_instance_items = item,description
                 print(print_instance_items)
         elif derp==True:
-            getattr(getattr(player1, player_room), short_description)
+            enter_room_instance.short_description
             player1.room_change(pit_death)
             enter_room()
         else:
@@ -261,18 +262,18 @@ def enter_room(derp=False):
 def room_change(direction, derp=False):
     global iterations
     #this is what controls where goes to where
-    room = getattr(player1, player_room)
+    room = player1.player_room
     global lamp_on
-    if lamp_on == True and getattr(lamp, location)== room:
+    if lamp_on == True and lamp.location== room:
         light_instance = True
-    elif lamp in getattr(player1, player_inventory) and lamp_on == True:
+    elif lamp in player1.player_inventory and lamp_on == True:
         light_instance = True
     else:
         light_instance = False
         
     if getattr(room, aboveground) == True or light_instance == True:
-        
-        if direction in getattr(getattr(player1, player_room), directions):
+        room_change_instance = player1.player_room
+        if direction in room_change_instance.directions:
             derp_yes = False
             iterations = 0
             if direction == 'n':
@@ -289,7 +290,6 @@ def room_change(direction, derp=False):
                 player1.go_west
             else:
                 print ('program failure')                                     
-            player1.room_change(getattr(room, whichway))
         elif iterations < 5:
             iterations = iterations + 1
         else:
@@ -346,8 +346,8 @@ def help():
 def place_drop():
     room_instance_drop = getattr(player1, player_room)
     drop_instance = raw_input('what do you want to place/drop?')
-    if drop_instance in getattr(player1, player_inventory):
-        drop_instance.location(getattr(player1, player_room))
+    if drop_instance in player1.player_inventory:
+        drop_instance.location(player1.player_room)
         player1.player_inventory_remove(drop_instance)
         room_instance_drop.room_inventory_add(drop_instance)
     else:
@@ -355,8 +355,8 @@ def place_drop():
         
 def use_item():
     use_instance = raw_input('what do you want to use?')
-    room_instance_use = getattr(player1, player_room)
-    if use_instance in getattr(player1, player_inventory):
+    room_instance_use = player1.player_room
+    if use_instance in player1.player_inventory:
         if use_instance == 'lamp':
             global lamp_on
             lamp_on = True
@@ -372,15 +372,15 @@ def use_item():
         
 def get_action():
     #ugh
-    room_instance_get = getattr(player1, player_room)
+    room_instance_get = player1.player_room
     get_instance = raw_input('what would you like to get?')
     if get_instance == 'c' and len(get_instance)== 1:
         print ('nevermind')
-    elif get_instance in getattr(getattr(player1, player_room), room_inventory):
+    elif get_instance in room_instance_get.room_inventory:
         get_instance.location('player_inventory')
         player1.player_inventory_add(get_instance)
         room_instance_get.room_inventory_remove(get_instance)
-    elif get_instance in getattr(player1, player_inventory):
+    elif get_instance in player1.player_inventory:
         print ('you already have that!')
     else:
         print ('what?')
@@ -391,7 +391,7 @@ def get_action():
 def action(answer):
     #which action (not T/F)
     if answer == 'xyzzy':
-        xyzzy_xyzzy(getattr(player1, player_room))
+        xyzzy_xyzzy(player1.player_room)
     elif len(answer) != 1:
         print ("i don't understand that!")
     elif answer in 'nesw':
@@ -420,7 +420,7 @@ def action(answer):
 
 def xyzzy_xyzzy():
     #Xyzzy teleport function
-    room = getattr(player1, player_room)
+    room = player1.player_room
     if room == 'debris':
         player1.room_change('home')
     elif room == 'home':
@@ -432,7 +432,7 @@ def xyzzy_xyzzy():
 def colossal_cave_knockoff():
     setup()
     startup()
-    while getattr(player1, player_status) == 'alive':
+    while player1.player_status == 'alive':
         answer_instance = raw_input()
         action(answer_instance)
     restart = raw_input('play again?')
