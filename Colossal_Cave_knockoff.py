@@ -230,23 +230,26 @@ def enter_room(derp=False):
             start_room.room_inventory_add('lamp')
             enter_room()
         else:
-            print 'you died'
+            print('you died')
             player1.die
             
     else:        
         if derp==False:
             if getattr(getattr(player1, player_room), entered) == False:
-                print getattr(getattr(player1, player_room), long_description)
+                print_instance_enter = getattr(getattr(player1, player_room), long_description)
+                print(print_instance_enter)
             else:
-                print getattr(getattr(player1, player_room), short_description)
+                print_instance_enter = getattr(getattr(player1, player_room), short_description)
+                print(print_instance_enter)
             for items in getattr(getattr(player1, player_room), room_inventory):
-                print getattr(item, description)
+                print_instance_items = getattr(item, description)
+                print(print_instance_items)
         elif derp==True:
             getattr(getattr(player1, player_room), short_description)
             player1.room_change(pit_death)
             enter_room()
         else:
-            print 'program failure'
+            print ('program failure')
     
 
 def room_change(direction, derp=False):
@@ -267,35 +270,35 @@ def room_change(direction, derp=False):
             derp_yes = False
             iterations = 0
             if direction == 'n':
-                print 'you go north'
+                print ('you go north')
                 player1.go_north()
             elif direction== 'e':
-                print 'you go east'
+                print ('you go east')
                 player1.go_east()
             elif dirction == 's':
-                print 'you go south'
+                print ('you go south')
                 player1.go_south()
             elif direction == 'w':
-                print 'you go west'
+                print ('you go west')
                 player1.go_west
             else:
-                print 'program failure'                                     
+                print ('program failure')                                     
             player1.room_change(getattr(room, whichway))
         elif iterations < 5:
             iterations = iterations + 1
         else:
             derp_yes = True
             if direction == 'w':
-                print 'fine. you go west'
+                print ('fine. you go west')
                 player1.go_west()
             elif direction == 's':
-                print 'fine. you go south'
+                print ('fine. you go south')
                 player1.go_south()
             elif direction == 'n':
-                print 'fine. you go north'
+                print ('fine. you go north')
                 player1.go_north()
             else:
-                print 'fine. you go east'
+                print ('fine. you go east')
                 player1.go_east()
         enter_room(derp = derp_yes)
             
@@ -319,9 +322,9 @@ def startup():
             testing = False
     
     if raw_input('Do you want instructions?') == 'y':
-        print instructions
+        print (instructions)
     else:
-        print 'starting'
+        print ('starting')
         
                                               
     
@@ -329,9 +332,9 @@ def help():
 #the help thing, called by h or ?
     global command_string_help                                          
     if raw_input('list commands? y n')== 'y':
-        print command_string_help
+        print (command_string_help)
     else:
-        print 'Then why did you ask?'
+        print ('Then why did you ask?')
 
         
 def place_drop():
@@ -342,7 +345,7 @@ def place_drop():
         player1.player_inventory_remove(drop_instance)
         room_instance_drop.room_inventory_add(drop_instance)
     else:
-        print "you don't have that"
+        print ("you don't have that")
         
 def use_item():
     use_instance = raw_input('what do you want to use?')
@@ -356,9 +359,9 @@ def use_item():
                 chasm1.make_bridge()
                 chasm2.make_bridge()
         else:
-            print "you can't use that"
+            print ("you can't use that")
     else:
-        print "you don't have that"
+        print ("you don't have that")
                              
         
 def get_action():
@@ -366,15 +369,15 @@ def get_action():
     room_instance_get = getattr(player1, player_room)
     get_instance = raw_input('what would you like to get?')
     if get_instance == 'c' and len(get_instance)== 1:
-        print 'nevermind'
+        print ('nevermind')
     elif get_instance in getattr(getattr(player1, player_room), room_inventory):
         get_instance.location('player_inventory')
         player1.player_inventory_add(get_instance)
         room_instance_get.room_inventory_remove(get_instance)
     elif get_instance in getattr(player1, player_inventory):
-        print 'you already have that!'
+        print ('you already have that!')
     else:
-        print 'what?'
+        print ('what?')
         
         
         
@@ -384,7 +387,7 @@ def action(answer):
     if answer == 'xyzzy':
         Xyzzy_Xyzzy(getattr(player1, player_room))
     elif len(answer)!=1
-        print "i don't understand that!"
+        print ("i don't understand that!")
     elif answer in 'nesw':
         room_change(answer)
     elif answer in 'pd':
@@ -394,15 +397,15 @@ def action(answer):
     elif answer == 'u':
         use_item()
     elif answer == 't':
-        print "sorry, you can't talk yet"
+        print ("sorry, you can't talk yet")
     elif answer == 'b':
-        print 'blasting requires dynamite'
+        print ('blasting requires dynamite')
     elif answer == 'r':
         enter_room()
     elif answer == 'l':
         enter_room()
     else:
-        print "sorry, that hasn't been implemented yet"
+        print ("sorry, that hasn't been implemented yet")
         
         
 
@@ -415,7 +418,7 @@ def Xyzzy_Xyzzy():
     elif room == 'home':
         player1.room_change('debris')
     else:
-        print 'nothing happens'
+        print ('nothing happens')
         
         
 def Colossal_cave_knockoff():
@@ -428,6 +431,6 @@ def Colossal_cave_knockoff():
     if restart == 'y':
         colossal_cave_knockoff()
     else:
-        print 'goodbye'
+        print ('goodbye')
         
         
