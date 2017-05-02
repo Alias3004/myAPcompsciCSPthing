@@ -261,7 +261,7 @@ def room_change(direction, derp=False):
     else:
         light_instance = False
         
-    if getattr(room, aboveground) == True or light_instance = True:
+    if getattr(room, aboveground) == True or light_instance == True:
         
         if direction in getattr(getattr(player1, player_room), directions):
             derp_yes = False
