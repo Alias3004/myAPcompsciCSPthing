@@ -116,8 +116,12 @@ class room():
     def room_inventory_remove(self, item):
         self.room_inventory.remove(item)
     def make_bridge():
-        if self.north == 'chasm1' or self.south == 'chasm2':
+        if self.names == 'north chasm' or self.names == 'south chasm':
             self.long_description.append('a bridge now spans the chasm')
+            if self.names == 'north chasm':
+                self.south = 'chasm2'
+            else:
+                self.north = 'chasm1'
         else:
             self.placeholder = 1
         
@@ -169,8 +173,8 @@ def setup():
     ain_King = room('ain King', 'ne', 'Hall_of_the_Mount', 'Chasm1', 'wall', 'wall', ain_King_string_1, ain_King_string_2)
     cave_entrance = room('Cave entrance', 'nesw', 'plains3', 'featureless_plain', 'grill_room', 'featureless_plain', entrance_string_1, entrance_string_2, aboveground = True)
     grill_room = room('grill room', 'ns', 'cave_entrance', 'wall', 'debris_room', 'wall', grill_string_1, grill_string_2, aboveground = True)
-    Chasm1 = room('north chasm', 'sw', 'wall', 'cliff', 'chasm2', 'ain_King', Chasm1_string_1, Chasm1_string_2)
-    Chasm2 = room('south chasm', 'ns', 'Chasm1', 'wall', 'Crystal_room', 'wall', Chasm2_string_2, chasm2_string_2)
+    Chasm1 = room('north chasm', 'sw', 'wall', 'cliff', 'cliff', 'ain_King', Chasm1_string_1, Chasm1_string_2)
+    Chasm2 = room('south chasm', 'ns', 'Cliff', 'wall', 'Crystal_room', 'wall', Chasm2_string_2, chasm2_string_2)
     Crystal_Room = room('Crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_string_1, crystal_string_2)
     Twilight_Zone = room('Twilight Zone', 'nesw', 'ugh', 'ugh', 'ugh', 'ugh', Twilight_zone_string_1, Twilight_zone_string_2)
     ugh = room('ugh', 'nesw', 'Twilight_Zone', 'Twilight_Zone', 'Twilight_Zone', 'Maze5', ugh_string, ugh_string)
