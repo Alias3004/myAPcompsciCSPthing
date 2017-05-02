@@ -170,7 +170,7 @@ def setup():
     pit_death = room('death', '', '', '', '', '', death_string_1, death_string_2)
     debris_room = room('debris', 'ns', 'grill_room', 'wall', 'Hall_of_the_Mount', 'wall', debris_string_1, debris_string_2)
     wall = room('wall', '', '', '', '', '', wall_string, wall_string)
-    cliff = room('cliff', '','','','', cliff_string, cliff_string)
+    cliff = room('cliff', '','','','','', cliff_string, cliff_string)
     start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest3', 'home', start_string_1, start_string_2, aboveground = True)
     wilderness = room('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest3', wilderness_string, wilderness_string, aboveground = True)
     forest3 = room('forest', 'nesw', 'start_room', 'wilderness', 'plains3', 'wilderness', forest3_string_1, forest3_string_2, aboveground = True)
