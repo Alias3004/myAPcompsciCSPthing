@@ -166,13 +166,37 @@ def setup():
     
     
 def enter_room(derp=False):
-    
-    if getattr(getattr(player1, player_room), entered) == False:
-        print getattr(getattr(player1, player_room), long_description)
+    if getattr(player1, player_room) = 'pit_death':
+        death_instance = raw_input()
+        if death_instance == 'y':
+            room_instance = getattr(player1, player_room)
+            room_instance.room_inventory_remove('lamp')
+            player1.room_change('home')
+            lamp.item_location('start_room')
+            start_room.room_inventory_add('lamp')
+        else:
+            print 'you died'
+            restart = raw_input('play again?')
+            if restart == 'y':
+                setup()
+                startup()
+                #name of actual program here
+            else:
+                print 'goodbye'
+            
+    if derp=False:
+        if getattr(getattr(player1, player_room), entered) == False:
+            print getattr(getattr(player1, player_room), long_description)
+        else:
+            print getattr(getattr(player1, player_room), short_description)
+        for items in getattr(getattr(player1, player_room), room_inventory):
+            print getattr(item, description)
+    elif derp=True:
+        getattr(getattr(player1, player_room), short_description)
+        player1.room_change(pit_death)
+        enter_room()
     else:
-        print getattr(getattr(player1, player_room), short_description)
-    for items in getattr(getattr(player1, player_room), room_inventory):
-        print getattr(item, description)
+        print 'program failure'
     
 
 def room_change(direction, derp=False):
