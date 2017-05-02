@@ -194,13 +194,7 @@ def enter_room(derp=False):
         else:
             print 'you died'
             player1.die
-            restart = raw_input('play again?')
-            if restart == 'y':
-                setup()
-                startup()
-                #name of actual program here
-            else:
-                print 'goodbye'
+            
     else:        
         if derp==False:
             if getattr(getattr(player1, player_room), entered) == False:
@@ -386,7 +380,16 @@ def Xyzzy_Xyzzy():
         print 'nothing happens'
         
         
-        
-        
+def Colossal_cave_knockoff():
+    setup()
+    startup()
+    while getattr(player1, player_status) = 'alive':
+        answer_instance = raw_input()
+        action(answer_instance)
+    restart = raw_input('play again?')
+    if restart == 'y':
+        colossal_cave_knockoff()
+    else:
+        print 'goodbye'
         
         
