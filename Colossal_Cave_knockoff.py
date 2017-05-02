@@ -122,6 +122,9 @@ class room():
         self.long_description = entry1
         self.short_description = entry2
         self.aboveground = aboveground
+        self.entered = False
+    def entered_true(self, entered):
+        self.entered = True
         
 def setup():
     #make the roomz
@@ -179,6 +182,8 @@ def setup():
     
     
     
+def enter_room():
+    
     
 
 def room_change(direction):
@@ -200,6 +205,7 @@ def room_change(direction):
         player_room = getattr(room, whichway)
     else:
         player_room = 'pit_death'
+    enter_room()
 
 def object_status(room):
     #controls where the objects are
