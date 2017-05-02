@@ -58,6 +58,8 @@ class player():
         self.player_inventory.remove(item)
     def die():
         self.player_status = 'dead'
+    def live():
+        self.player_status = 'alive'
     def go_west():
         self.player_room = getattr(getattr(player1, player_room), west)
     def go_east():
@@ -314,7 +316,7 @@ def room_change(direction, derp=False):
     
 def startup():
 #display commands at startup
-    player1.player_status('alive')
+    player1.live()
     print(command_string_help)
     global instructions
     testing = False
