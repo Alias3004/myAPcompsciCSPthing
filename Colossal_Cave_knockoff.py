@@ -177,10 +177,9 @@ def enter_room():
 
 def room_change(direction):
     #this is what controls where goes to where
-    global player_room
-    global lamp_room
-    room = player_room
-    if getattr(room, aboveground) == True or (lamp_on == True and (lamp_room == room or lamp_room == 'player')):
+    
+    room = getattr(player1, player_room)
+    if getattr(room, aboveground) == True or (lamp_on == True and (getattr(lamp, location) == room or lamp in getattr(player1, player_inventory)):
         if direction == 'n':
             whichway = 'north'
         elif direction== 'e':
@@ -196,9 +195,6 @@ def room_change(direction):
         player_room = 'pit_death'
     enter_room()
 
-def object_status(room):
-    #controls where the objects are
-    return 0 #placeholder
     
 def startup():
 #display commands at startup
