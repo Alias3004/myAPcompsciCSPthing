@@ -44,9 +44,18 @@ player_room = 'start_room'
 #I hope I can make the inventory less complicated... 
 #got it! each room has an 'inventory, as does the player, and the object stores which room it's in (or if it's in the player's
 #inventory
+class player():
+    def __init__(self):
+        self.player_intentory = []
+        self.player_room = 'start_room'
+    def room_change(destination):
+        self.player_room = destination
+    def get_item(item):
+        self.player_inventory.append(item)
+    def drop_item(item):
+        self.player_inventory.remove(item)
+player1 = player()
 
-global player_inventory
-player_inventory = []
 global lamp_on
 lamp_on = False
 class item():
@@ -158,12 +167,11 @@ def setup():
     
     
 def enter_room():
-    global player_room
-    if getattr(player_room, entered) == False:
-        print getattr(player_room, long_description)
+    if getattr(getattr(player1, player_room), entered) == False:
+        print getattr(getattr(player1, player_room), long_description)
     else:
-        print getattr(player_room, short_description)
-    for items in getattr(player_room, room_inventory):
+        print getattr(getattr(player1, player_room), short_description)
+    for items in getattr(getattr(player1, player_room), room_inventory):
         print getattr(item, description)
     
 
