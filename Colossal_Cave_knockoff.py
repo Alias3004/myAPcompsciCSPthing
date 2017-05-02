@@ -67,22 +67,15 @@ class item():
     def item_location(new_location):
         self.location = new_location
         
-lamp = item.llamp('lamp', 'l', 'there is a lamp here', 'lamp', 'home')
-rod = item.rrod('rod', 'r', 'there is a 3-foot steel rod here', 'rod', 'debris_room')
-silver = item.ssilver('silver bars', 's', 'there are bars of silver here!', 'silver', '')
-gold = item.nugget('gold', 'g', 'there is a gold nugget here!', 'gold', '')
-coke_can = item.coke_zero('black cylinder', 'c', 'there is a mysterious black cylinder here', 'coke_can', '')
-quarter = item.qquarter('silver coin', 'q', 'there is a quarter here!', 'quarter', '')
-keys = item.kkeys('rusty keys', 'k', 'there are some keys here', 'keys', 'home')
+lamp = item('lamp', 'l', 'there is a lamp here', 'lamp', 'home')
+rod = item('rod', 'r', 'there is a 3-foot steel rod here', 'rod', 'debris_room')
+silver = item('silver bars', 's', 'there are bars of silver here!', 'silver', '')
+gold = item('gold', 'g', 'there is a gold nugget here!', 'gold', '')
+coke_can = item('black cylinder', 'c', 'there is a mysterious black cylinder here', 'coke_can', '')
+quarter = item('silver coin', 'q', 'there is a quarter here!', 'quarter', '')
+keys = item('rusty keys', 'k', 'there are some keys here', 'keys', 'home')
 
-    
-
-def item_location_1(answer, room_or_item):
-    #there are two variables for item location - a variable for each room storing which items are in it 
-    #(in this circumstance the player counts as a room), and a variable for each object storing where it is.
-    #this means that when the player enters a room, there is a fast check, and when the player cites a specific
-    #object, again, fast check. This function also controls the movement of items, not just the reference of them.
-    
+   
     
     
 class room():
@@ -166,7 +159,7 @@ def setup():
     
     
 def enter_room(derp=False):
-    if getattr(player1, player_room) = 'pit_death':
+    if getattr(player1, player_room) == 'pit_death':
         death_instance = raw_input()
         if death_instance == 'y':
             room_instance = getattr(player1, player_room)
@@ -183,20 +176,20 @@ def enter_room(derp=False):
                 #name of actual program here
             else:
                 print 'goodbye'
-            
-    if derp=False:
-        if getattr(getattr(player1, player_room), entered) == False:
-            print getattr(getattr(player1, player_room), long_description)
+    else:        
+        if derp==False:
+            if getattr(getattr(player1, player_room), entered) == False:
+                print getattr(getattr(player1, player_room), long_description)
+            else:
+                print getattr(getattr(player1, player_room), short_description)
+            for items in getattr(getattr(player1, player_room), room_inventory):
+                print getattr(item, description)
+        elif derp==True:
+            getattr(getattr(player1, player_room), short_description)
+            player1.room_change(pit_death)
+            enter_room()
         else:
-            print getattr(getattr(player1, player_room), short_description)
-        for items in getattr(getattr(player1, player_room), room_inventory):
-            print getattr(item, description)
-    elif derp=True:
-        getattr(getattr(player1, player_room), short_description)
-        player1.room_change(pit_death)
-        enter_room()
-    else:
-        print 'program failure'
+            print 'program failure'
     
 
 def room_change(direction, derp=False):
@@ -217,15 +210,16 @@ def room_change(direction, derp=False):
         player1.room_change(getattr(room, whichway))
     else:
         player1.room_change('pit_death')
-    if derp = False:                                          
+    if derp == False:                                          
         enter_room()
-    if derp = True
+    if derp == True
         enter_room(derp=True)
 
     
 def startup():
 #display commands at startup
     print(command_string_help)
+    global instructions
     testing = False
     while testing != True:
         instance = raw_input('Do you want instructions?')
@@ -237,9 +231,9 @@ def startup():
     if raw_input('Do you want instructions?') == 'y':
         print instructions
     else:
-        return 0 #placeholder
-        #start game
+        print 'starting'
         
+                                              
     
 def help():
 #the help thing, called by h or ?
