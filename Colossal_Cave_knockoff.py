@@ -39,8 +39,7 @@ edited by don woods. i am the narrator, your eyes, ears, etcetera. in order to t
 however, i can only take single-letter commands, as this is not the full game. basic commands are directions, as well as 'use'
 commands. use commands will be followed by a query of what to use. please keep your arms and legs inside the program at all times.
 '''
-global player_room
-player_room = 'start_room'
+
 #I hope I can make the inventory less complicated... 
 #got it! each room has an 'inventory, as does the player, and the object stores which room it's in (or if it's in the player's
 #inventory
@@ -114,7 +113,7 @@ def setup():
     #first entry strings/look
     debris_string_1 = 'You are in a room full of junk and debris. There is an awkward slope to the north, and a widening passage to the south. There is a rock here with the letters XYZZY'
     cliff_string = 'you fall down a cliff and break every bone in your body!'
-    wall_string = 'you walk into a wall. Ouch!'
+    wall_string = 'you walk into a wall. Ouch! you broke your skull!'
     start_string_1 = 'You are in a small clearing next to a stream. West of you is a small cabin. There is a wilderness to the north and east, and a more natural forest to the south'
     wilderness_string = 'you are in a wilderness, stretching in all directions'
     featureless_string = 'you are on a featureless plain, stretching in all directions'
@@ -166,7 +165,8 @@ def setup():
     home.room_inventory_add(['lamp', 'keys'])
     
     
-def enter_room():
+def enter_room(derp=False):
+    
     if getattr(getattr(player1, player_room), entered) == False:
         print getattr(getattr(player1, player_room), long_description)
     else:
@@ -175,7 +175,7 @@ def enter_room():
         print getattr(item, description)
     
 
-def room_change(direction):
+def room_change(direction, derp=False):
     #this is what controls where goes to where
     
     room = getattr(player1, player_room)
@@ -189,11 +189,14 @@ def room_change(direction):
         elif direction == 'w':
             whichway = 'west'
         else:
-            print 'program failure'
-        player_room = getattr(room, whichway)
+            print 'program failure'                                     
+        player1.room_change(getattr(room, whichway))
     else:
-        player_room = 'pit_death'
-    enter_room()
+        player1.room_change('pit_death')
+    if derp = False:                                          
+        enter_room()
+    if derp = True
+        enter_room(derp=True)
 
     
 def startup():
@@ -226,7 +229,6 @@ def movement (room, times, direction):
     #retrieve possible directions from the room
     
     iteration = times
-    derp = False
     if direction in getattr(room, directions):
         iteration = 0
         if direction == 'w':
@@ -251,8 +253,7 @@ def movement (room, times, direction):
             print 'fine. you go north'
         else:
             print 'fine. you go east'
-        derp = True
-    return derp
+        room_change(direction, derp=True)
 
 def check_inventory(call_type, subject_item):
     #checks if the object being referenced is in the inventory
