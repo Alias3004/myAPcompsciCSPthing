@@ -107,7 +107,7 @@ class room():
         self.short_description = entry2
         self.aboveground = aboveground
         self.entered = False
-        self.inventory = []
+        self.room_inventory = []
         self.placeholder = 1
     def entered_true(self, entered):
         self.entered = True
