@@ -432,6 +432,7 @@ def xyzzy_xyzzy():
 def colossal_cave_knockoff():
     setup()
     startup()
+    enter_room()
     while player1.player_status == 'alive':
         answer_instance = raw_input()
         action(answer_instance)
