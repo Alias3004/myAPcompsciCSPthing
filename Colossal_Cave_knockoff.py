@@ -9,7 +9,7 @@ command_string_help = '''
 list of commands 
 a - apply  
 b - blast
-c - coke
+c - cancel
 d - drop (followed by 'drop what' prompt)
 e - east 
 f - fate 
@@ -321,7 +321,20 @@ def use_place_drop(answer):
         
 def get_action():
     #ugh
-    return 0
+    room_instance_get = getattr(player1, player_room)
+    get_instance = raw_input('what would you like to get?')
+    if get_instance == 'c' and len(get_instance)== 1:
+        print 'nevermind'
+    elif get_instance in getattr(getattr(player1, player_room), room_inventory):
+        get_instance.location('player_inventory')
+        player1.player_inventory_add(get_instance)
+        room_instance_get.room_inventory_remove(get_instance)
+    elif get_instance in getattr(player1, player_inventory):
+        print 'you already have that!'
+    else:
+        print 'what?'
+        
+        
         
     
 def action(answer):
@@ -352,12 +365,13 @@ def action(answer):
         
 
 
-def Xyzzy_Xyzzy(room):
+def Xyzzy_Xyzzy():
     #Xyzzy teleport function
+    room = getattr(player1, player_room)
     if room == 'debris':
-        return 'home'
+        player1.room_change('home')
     elif room == 'home':
-        return 'debris'
+        player1.room_change('debris')
     else:
         print 'nothing happens'
         
