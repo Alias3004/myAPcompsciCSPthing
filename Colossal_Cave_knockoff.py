@@ -275,7 +275,7 @@ def enter_room(derp=False):
     else:        
         if derp==False:
             enter_rooom_instance = player1.player_room
-            if enter_room_instance.entered == False:
+            if eval(player1.player_room).entered == False:
                 print_instance_enter = eval(player1.player_room).long_description
                 print(print_instance_enter)
             else:
