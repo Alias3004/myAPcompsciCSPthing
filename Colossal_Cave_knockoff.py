@@ -50,23 +50,23 @@ class player():
         self.player_intentory = []
         self.player_room = 'start_room'
         self.player_status = 'alive'
-    def room_change(destination):
+    def room_change(self, destination):
         self.player_room = destination
-    def get_item(item):
+    def get_item(self, item):
         self.player_inventory.append(item)
-    def drop_item(item):
+    def drop_item(self, item):
         self.player_inventory.remove(item)
-    def die():
+    def die(self):
         self.player_status = 'dead'
-    def live():
+    def live(self):
         self.player_status = 'alive'
-    def go_west():
+    def go_west(self):
         self.player_room = getattr(getattr(player1, player_room), west)
-    def go_east():
+    def go_east(self):
         self.player_room = getattr(getattr(player1, player_room), east)
-    def go_north():
+    def go_north(self):
         self.player_room = getattr(getattr(player1, player_room), north)
-    def go_south():
+    def go_south(self):
         self.player_room = getattr(getattr(player1, player_room), south)
         
 player1 = player()
@@ -80,7 +80,7 @@ class item():
         self.description = there_is
         self.label = ID_shortcut
         self.location = start_location
-    def item_location(new_location):
+    def item_location(self, new_location):
         self.location = new_location
         
 lamp = item('lamp', 'l', 'there is a lamp here', 'lamp', 'home')
@@ -117,7 +117,7 @@ class room():
         self.room_inventory.append(item)
     def room_inventory_remove(self, item):
         self.room_inventory.remove(item)
-    def make_bridge():
+    def make_bridge(self):
         if self.names == 'north chasm' or self.names == 'south chasm':
             self.long_description.append('a bridge now spans the chasm')
             if self.names == 'north chasm':
