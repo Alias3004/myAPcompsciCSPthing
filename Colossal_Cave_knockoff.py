@@ -2,6 +2,8 @@
 #suddenly says 'fine. you go north' (alternatives between falling and dying and
 #walking into a wall and etc)
 #note: This code is heavily based off of the game by Will Crowther, and the maze by that made by adam woods 
+global iterations
+iterations = 0
 global command_string_help
 command_string_help = ''' 
 list of commands 
@@ -47,12 +49,24 @@ class player():
     def __init__(self):
         self.player_intentory = []
         self.player_room = 'start_room'
+        self.player_status = 'alive'
     def room_change(destination):
         self.player_room = destination
     def get_item(item):
         self.player_inventory.append(item)
     def drop_item(item):
         self.player_inventory.remove(item)
+    def die():
+        self.player_status = 'dead'
+    def go_west():
+        self.player_room = getattr(getattr(player1, player_room), west)
+    def go_east():
+        self.player_room = getattr(getattr(player1, player_room), east)
+    def go_north():
+        self.player_room = getattr(getattr(player1, player_room), north)
+    def go_south():
+        self.player_room = getattr(getattr(player1, player_room), south)
+        
 player1 = player()
 
 global lamp_on
@@ -169,6 +183,7 @@ def enter_room(derp=False):
             start_room.room_inventory_add('lamp')
         else:
             print 'you died'
+            player1.die
             restart = raw_input('play again?')
             if restart == 'y':
                 setup()
@@ -192,10 +207,9 @@ def enter_room(derp=False):
             print 'program failure'
     
 
-    
 def room_change(direction, derp=False):
+    global iterations
     #this is what controls where goes to where
-    
     room = getattr(player1, player_room)
     global lamp_on
     if lamp_on == True and getattr(lamp, location)== room:
@@ -206,30 +220,52 @@ def room_change(direction, derp=False):
         light_instance = False
         
     if getattr(room, aboveground) == True or light_instance = True:
-        if direction == 'n':
-            whichway = 'north'
-        elif direction== 'e':
-            whichway = 'east'
-        elif dirction == 's':
-            whichway = 'south'
-        elif direction == 'w':
-            whichway = 'west'
+        
+        if direction in getattr(getattr(player1, player_room), directions):
+            derp_yes = False
+            iterations = 0
+            if direction == 'n':
+                print 'you go north'
+                player1.go_north()
+            elif direction== 'e':
+                print 'you go east'
+                player1.go_east()
+            elif dirction == 's':
+                print 'you go south'
+                player1.go_south()
+            elif direction == 'w':
+                print 'you go west'
+                player1.go_west
+            else:
+                print 'program failure'                                     
+            player1.room_change(getattr(room, whichway))
+        elif iterations < 5:
+            iterations = iterations + 1
         else:
-            print 'program failure'                                     
-        player1.room_change(getattr(room, whichway))
+            derp_yes = True
+            if direction == 'w':
+                print 'fine. you go west'
+                player1.go_west()
+            elif direction == 's':
+                print 'fine. you go south'
+                player1.go_south()
+            elif direction == 'n':
+                print 'fine. you go north'
+                player1.go_north()
+            else:
+                print 'fine. you go east'
+                player1.go_east()
+        enter_room(derp = derp_yes)
+            
+            
     else:
         player1.room_change('pit_death')
-    if derp == False:                                          
-        enter_room()
-    elif derp == True:
-        enter_room(derp=True)
-    else:
-        print 'program failure'
+    
 
-                                              
     
 def startup():
 #display commands at startup
+    player1.player_status('alive')
     print(command_string_help)
     global instructions
     testing = False
@@ -256,35 +292,7 @@ def help():
         print 'Then why did you ask?'
 
 
-def movement (room, times, direction):
-    #retrieve possible directions from the room
-    
-    iteration = times
-    if direction in getattr(room, directions):
-        iteration = 0
-        if direction == 'w':
-            print 'you go west'
-            
-        elif direction == 's':
-            print 'you go south'
-        elif direction == 'n':
-            print 'you go north'
-        else:
-            print 'you go east'
-        room_change(direction)
-    elif iteration < 5:
-        iteration = iteration + 1
-        print "you can't go that way"
-    else:
-        if direction == 'w':
-            print 'fine. you go west'
-        elif direction == 's':
-            print 'fine. you go south'
-        elif direction == 'n':
-            print 'fine. you go north'
-        else:
-            print 'fine. you go east'
-        room_change(direction, derp=True)
+
 
 def check_inventory(call_type, subject_item):
     #checks if the object being referenced is in the inventory
