@@ -384,9 +384,10 @@ def get_action():
     
 def action(answer):
     #which action (not T/F)
+    length_instance = len(answer)
     if answer == 'xyzzy':
         Xyzzy_Xyzzy(getattr(player1, player_room))
-    elif len(answer)!=1
+    elif length_instance != 1:
         print ("i don't understand that!")
     elif answer in 'nesw':
         room_change(answer)
