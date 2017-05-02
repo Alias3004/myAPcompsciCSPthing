@@ -195,6 +195,14 @@ def object_status(room):
 def startup():
 #display commands at startup
     print(command_string_help)
+    testing = False
+    while testing != True:
+        instance = raw_input('Do you want instructions?')
+        if instance == 'y' or instance == 'n':
+            testing = True
+        else:
+            testing = False
+    
     if raw_input('Do you want instructions?') == 'y':
         print instructions
     else:
