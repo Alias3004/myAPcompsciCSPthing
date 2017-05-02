@@ -384,10 +384,9 @@ def get_action():
     
 def action(answer):
     #which action (not T/F)
-    length_instance = len(answer)
     if answer == 'xyzzy':
         Xyzzy_Xyzzy(getattr(player1, player_room))
-    elif length_instance != 1:
+    elif len(answer) != 1:
         print ("i don't understand that!")
     elif answer in 'nesw':
         room_change(answer)
@@ -425,7 +424,7 @@ def Xyzzy_Xyzzy():
 def Colossal_cave_knockoff():
     setup()
     startup()
-    while getattr(player1, player_status) = 'alive':
+    while getattr(player1, player_status) == 'alive':
         answer_instance = raw_input()
         action(answer_instance)
     restart = raw_input('play again?')
