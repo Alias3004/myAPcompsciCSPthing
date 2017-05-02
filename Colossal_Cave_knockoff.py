@@ -66,13 +66,45 @@ quarter = item.qquarter('silver coin', 'q', 'there is a quarter here!', '', 'qua
 
 def item_setup():
     #sets up the items - where they go at first.
+    lamp_loc = 'start_room'
+    rod_loc = 'debris_room'
+    silver_loc = ''
+    gold_loc = ''
+    coke_can_loc = ''
+    quarter_loc = ''
+    
 
 def item_location(which_item, room_or_item):
     #there are two variables for item location - a variable for each room storing which items are in it 
     #(in this circumstance the player counts as a room), and a variable for each object storing where it is.
     #this means that when the player enters a room, there is a fast check, and when the player cites a specific
     #object, again, fast check. This function also controls the movement of items, not just the reference of them.
-    
+    a = ''
+    b = ''
+    c = 'coke_can_loc'
+    d = 'dynamite_loc'
+    e = ''
+    f = ''
+    g = 'gold_loc'
+    h = ''
+    i = ''
+    j = ''
+    k = 'keys_loc'
+    l = 'lamp_loc'
+    m = ''
+    n = ''
+    o = ''
+    p = ''
+    q = 'quarter_loc'
+    r = 'rod_loc'
+    s = 'silver_loc'
+    t = 'thingimajig_loc'
+    u = ''
+    v = ''
+    w = ''
+    x = ''
+    y = ''
+    z = ''
     
     
     
@@ -131,9 +163,9 @@ def setup():
     cliff = room('cliff', '','','','', cliff_string, cliff_string)
     start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest3', 'home', start_string_1, start_string_2, aboveground = True)
     wilderness = room('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest3', wilderness_string, wilderness_string, aboveground = True)
-    forest3 = room('forest', 'nesw', 'start', 'wilderness', 'plains3', 'wilderness', forest3_string_1, forest3_string_2, aboveground = True)
+    forest3 = room('forest', 'nesw', 'start_room', 'wilderness', 'plains3', 'wilderness', forest3_string_1, forest3_string_2, aboveground = True)
     plains3 = room('plains', 'nesw', 'forest3', 'featureless_plain', 'cave_entrance', 'featureless_plain', plains3_string_1, plains3_string_2, aboveground = True)
-    home = room('Cabin', 'e', 'wall', 'start', 'wall', 'wall', home_string_1, home_string_2, aboveground = True)
+    home = room('Cabin', 'e', 'wall', 'start_room', 'wall', 'wall', home_string_1, home_string_2, aboveground = True)
     featureless_plain = room('featureless plain', 'nesw', 'featureless_plain', 'featureless_plain', 'plains3', 'featureless_plain', featureless_string, featureless_string, aboveground = True)
     Hall_of_the_Mount = room('Hall of the Mount', 'ns', 'debris_room', 'wall', 'ain_King', 'wall', Hall_of_the_mount_string_1, Hall_of_the_Mount_string_2)
     ain_King = room('ain King', 'ne', 'Hall_of_the_Mount', 'Chasm1', 'wall', 'wall', ain_King_string_1, ain_King_string_2)
