@@ -108,12 +108,18 @@ class room():
         self.aboveground = aboveground
         self.entered = False
         self.inventory = []
+        self.placeholder = 1
     def entered_true(self, entered):
         self.entered = True
     def room_inventory_add(self, item):
         self.room_inventory.append(item)
     def room_inventory_remove(self, item):
         self.room_inventory.remove(item)
+    def make_bridge():
+        if self.north == 'chasm1' or self.south == 'chasm2':
+            self.long_description.append('a bridge now spans the chasm')
+        else:
+            self.placeholder = 1
         
 def setup():
     #make the roomz
@@ -163,7 +169,7 @@ def setup():
     ain_King = room('ain King', 'ne', 'Hall_of_the_Mount', 'Chasm1', 'wall', 'wall', ain_King_string_1, ain_King_string_2)
     cave_entrance = room('Cave entrance', 'nesw', 'plains3', 'featureless_plain', 'grill_room', 'featureless_plain', entrance_string_1, entrance_string_2, aboveground = True)
     grill_room = room('grill room', 'ns', 'cave_entrance', 'wall', 'debris_room', 'wall', grill_string_1, grill_string_2, aboveground = True)
-    Chasm1 = room('north chasm', 'sw', 'wall', 'cliff', 'ain_King', 'Chasm2', Chasm1_string_1, Chasm1_string_2)
+    Chasm1 = room('north chasm', 'sw', 'wall', 'cliff', 'chasm2', 'ain_King', Chasm1_string_1, Chasm1_string_2)
     Chasm2 = room('south chasm', 'ns', 'Chasm1', 'wall', 'Crystal_room', 'wall', Chasm2_string_2, chasm2_string_2)
     Crystal_Room = room('Crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_string_1, crystal_string_2)
     Twilight_Zone = room('Twilight Zone', 'nesw', 'ugh', 'ugh', 'ugh', 'ugh', Twilight_zone_string_1, Twilight_zone_string_2)
@@ -291,33 +297,33 @@ def help():
     else:
         print 'Then why did you ask?'
 
-
-
-
-def check_inventory(call_type, subject_item):
-    #checks if the object being referenced is in the inventory
-    #or lists the inventory 
-    if call_type == 0:
-        print player_inventory
-    else:
-        if subject_item in player_inventory:
-            return True
-        else:
-            return False
         
-def use_place_drop(answer):
-    subject_item_var = raw_input('what do you want to do this with?')
-    if check_inventory(1, subject_item_var) == True:
-        if answer == 'u':
-            return 'u'
-        elif answer == 'd':
-            return 'd'
-        elif answer == 'p':
-            return 'p'
-        else:
-            print 'program failure'
+def place_drop():
+    room_instance_drop = getattr(player1, player_room)
+    drop_instance = raw_input('what do you want to place/drop?')
+    if drop_instance in getattr(player1, player_inventory):
+        drop_instance.location(getattr(player1, player_room))
+        player1.player_inventory_remove(drop_instance)
+        room_instance_drop.room_inventory_add(drop_instance)
     else:
         print "you don't have that"
+        
+def use_item():
+    use_instance = raw_input('what do you want to use?')
+    room_instance_use = getattr(player1, player_room)
+    if use_instance in getattr(player1, player_inventory):
+        if use_instance == 'lamp':
+            global lamp_on
+            lamp_on = True
+        elif use_instance == 'rod':
+            if rooom_instance_use == chasm1 or room_instance_use == chasm2:
+                chasm1.make_bridge()
+                chasm2.make_bridge()
+        else:
+            print "you can't use that"
+    else:
+        print "you don't have that"
+                             
         
 def get_action():
     #ugh
@@ -346,11 +352,11 @@ def action(answer):
     elif answer in 'nesw':
         room_change(answer)
     elif answer in 'pd':
-        place_drop(answer)
+        place_drop()
     elif answer == 'g':
         get_action()
     elif answer == 'u':
-        use_action()
+        use_item()
     elif answer == 't':
         print "sorry, you can't talk yet"
     elif answer == 'b':
