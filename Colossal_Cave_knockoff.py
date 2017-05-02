@@ -4,33 +4,33 @@
 #note: This code is heavily based off of the game by Will Crowther, and the maze by that made by adam woods 
 global command_string_help
 command_string_help = ''' 
-#list of commands 
-a - apply (use)? 
-b - blast (no dynamite)
-c - cheat? climb?
+list of commands 
+a - apply  
+b - blast
+c - coke
 d - drop (followed by 'drop what' prompt)
 e - east 
-f - fail? 
-g - get (followed by 'get what' prompt, only will be so many objects) 
+f - fate 
+g - get (followed by 'get what' prompt) 
 h - help (list commands) 
 i - inventory 
 j - jump 
 k - attack (kill)
 l - look 
-m - message log?
+m - ???
 n - conditional, either works as no (when prompted for a yn answer) or north 
 o - open 
-p - place?
-q - question (talk function? hint?) 
-r - repeat? 
+p - place
+q - quiz 
+r - repeat 
 s - south 
 t - talk (allows you to input a string that isn't a command, which you will say)
 u - use (followed by 'use what' prompt)
-v - IDK 
+v - ??? 
 w - west 
-x - xyzzy or extended command (room specific?)
+x - ???
 y - yes 
-z - sleep or skip turn? 
+z - ???
 ? - help (list commands)
 '''
 instructions = '''
@@ -74,7 +74,7 @@ def item_setup():
     quarter_loc = ''
     
 
-def item_location(which_item, room_or_item):
+def item_location_1(answer, room_or_item):
     #there are two variables for item location - a variable for each room storing which items are in it 
     #(in this circumstance the player counts as a room), and a variable for each object storing where it is.
     #this means that when the player enters a room, there is a fast check, and when the player cites a specific
@@ -83,7 +83,7 @@ def item_location(which_item, room_or_item):
     b = ''
     c = 'coke_can_loc'
     d = 'dynamite_loc'
-    e = ''
+    e = 'emerald_loc'
     f = ''
     g = 'gold_loc'
     h = ''
@@ -94,16 +94,16 @@ def item_location(which_item, room_or_item):
     m = ''
     n = ''
     o = ''
-    p = ''
+    p = 'pocketwatch_loc'
     q = 'quarter_loc'
     r = 'rod_loc'
     s = 'silver_loc'
     t = 'thingimajig_loc'
     u = ''
     v = ''
-    w = ''
-    x = ''
-    y = ''
+    w = 'western_loc'
+    x = 'xylophone_loc'
+    y = 'yo-yo_loc'
     z = ''
     
     
@@ -293,7 +293,7 @@ def action(answer):
         use_place_drop(answer)
     elif answer == 'g':
         get_action()
-    elif answer = 't':
+    elif answer == 'x':
         #continue with possibilities
         return 0
     else:
@@ -311,7 +311,12 @@ def possible_answer(answer, state):
         else:
             return 0
     elif state == 1: #normal answer
-        action(answer)
+        if answer == 'xyzzy':
+            Xyzzy_Xyzzy(player_room)
+        elif len(answer)==1:
+            action(answer)
+        else:
+            print "I didn't understand that"
     else:
         print 'program failure'
         
