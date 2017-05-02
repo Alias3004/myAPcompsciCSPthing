@@ -327,7 +327,7 @@ def startup():
         else:
             testing = False
     
-    if raw_input('Do you want instructions?') == 'y':
+    if instance == 'y':
         print (instructions)
     else:
         print ('starting')
@@ -402,6 +402,8 @@ def action(answer):
         get_action()
     elif answer == 'u':
         use_item()
+    elif answer == '?' or answer == 'h':
+        help()
     elif answer == 't':
         print ("sorry, you can't talk yet")
     elif answer == 'b':
