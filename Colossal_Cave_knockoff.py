@@ -412,7 +412,7 @@ def room_change(direction, derp=False):
                 player1.go_south()
             elif direction == 'w':
                 print ('you go west')
-                player1.go_west
+                player1.go_west()
             else:
                 print ('program failure')                                     
         elif iterations < 5:
