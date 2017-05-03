@@ -47,7 +47,7 @@ commands. use commands will be followed by a query of what to use. please keep y
 #inventory
 class player():
     def __init__(self):
-        self.player_intentory = []
+        self.player_inventory = []
         self.player_room = 'start_room'
         self.player_status = 'alive'
     def room_change(self, destination):
