@@ -516,7 +516,7 @@ def get_action():
 def action(answer):
     #which action (not T/F)
     if answer == 'xyzzy':
-        xyzzy_xyzzy(player1.player_room)
+        xyzzy_xyzzy()
     elif len(answer) != 1:
         print ("i don't understand that!")
     elif answer in 'nesw':
