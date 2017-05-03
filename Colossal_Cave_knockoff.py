@@ -374,7 +374,7 @@ def enter_room(derp=False):
                 print_instance_enter = eval(player1.player_room).short_description
                 print(print_instance_enter)
             for items in eval(player1.player_room).room_inventory:
-                print_instance_items = item,description
+                print_instance_items = item.description
                 print(print_instance_items)
         elif derp==True:
             eval(player1.player_room).short_description
