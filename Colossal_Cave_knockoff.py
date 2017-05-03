@@ -331,40 +331,40 @@ def room_change(direction, derp=False):
     #    light_instance = False
         
     #if cave_array[player1.player_room].aboveground == True or light_instance == True:
-        if direction in cave_array[player1.player_room].directions:
-            derp_yes = False
-            iterations = 0
-            if direction == 'n':
-                print ('you go north')
-                player1.go_north()
-            elif direction== 'e':
-                print ('you go east')
-                player1.go_east()
-            elif direction == 's':
-                print ('you go south')
-                player1.go_south()
-            elif direction == 'w':
-                print ('you go west')
-                player1.go_west()
-            else:
-                print ('program failure')                                     
-        elif iterations < 5:
-            iterations = iterations + 1
-        else:
-            derp_yes = True
-            if direction == 'w':
-                print ('fine. you go west')
-                player1.go_west()
-            elif direction == 's':
-                print ('fine. you go south')
-                player1.go_south()
-            elif direction == 'n':
-                print ('fine. you go north')
-                player1.go_north()
-            else:
-                print ('fine. you go east')
-                player1.go_east()
-        enter_room(derp = derp_yes)
+    if direction in cave_array[player1.player_room].directions:
+      derp_yes = False
+      iterations = 0
+      if direction == 'n':
+          print ('you go north')
+          player1.go_north()
+      elif direction== 'e':
+          print ('you go east')
+          player1.go_east()
+      elif direction == 's':
+          print ('you go south')
+          player1.go_south()
+      elif direction == 'w':
+              print ('you go west')
+              player1.go_west()
+      else:
+              print ('program failure')                                     
+    elif iterations < 5:
+          iterations = iterations + 1
+    else:
+          derp_yes = True
+          if direction == 'w':
+              print ('fine. you go west')
+              player1.go_west()
+          elif direction == 's':
+              print ('fine. you go south')
+              player1.go_south()
+          elif direction == 'n':
+              print ('fine. you go north')
+              player1.go_north()
+          else:
+              print ('fine. you go east')
+              player1.go_east()
+    enter_room(derp = derp_yes)
             
             
     #else:
