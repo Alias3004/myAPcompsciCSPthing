@@ -264,7 +264,23 @@ def setup():
     crystal_room.room_inventory_add('gold')
     strange_room.room_inventory_add('coke_can')
     junction.room_inventory_add('quarter')
-    
+
+def room_finder(answer):
+    #searches cave_array for destination room, if not found, return 0 (-> room 0)
+    global cave_array
+    found=False
+    count = 0
+    while found==False and count < len(cave_array):
+        if cave_array[count].names == answer:
+            found = True
+        else:
+            count = count+1
+    if found == True:
+        return count
+    else:
+        return 0
+
+def 
                               
     
 def enter_room(derp=False):
