@@ -48,7 +48,7 @@ commands. use commands will be followed by a query of what to use. please keep y
 class player():
     def __init__(self):
         self.player_inventory = []
-        self.player_room = 'start_room'
+        self.player_room = 4
         self.player_status = 'alive'
     def room_change(self, destination):
         self.player_room = destination
@@ -61,13 +61,13 @@ class player():
     def live(self):
         self.player_status = 'alive'
     def go_west(self):
-        self.player_room = eval(player1.player_room).west
+        self.player_room = room_finder(cave_array[player1.player_room].west)
     def go_east(self):
-        self.player_room = eval(player1.player_room).east
+        self.player_room = room_finder(cave_array[player1.player_room].east)
     def go_north(self):
-        self.player_room = eval(player1.player_room).north
+        self.player_room = room_finder(cave_array[player1.player_room].north)
     def go_south(self):
-        self.player_room = eval(player1.player_room).south
+        self.player_room = room_finder(cave_array[player1.player_room].south)
         
 player1 = player()
 
@@ -83,13 +83,13 @@ class item():
     def item_location(self, new_location):
         self.location = new_location
         
-lamp = item('lamp', 'l', 'there is a lamp here', 'lamp', 'home')
-rod = item('rod', 'r', 'there is a 3-foot steel rod here', 'rod', 'debris_room')
+lamp = item('lamp', 'l', 'there is a lamp here', 'lamp', '')
+rod = item('rod', 'r', 'there is a 3-foot steel rod here', 'rod', '')
 silver = item('silver bars', 's', 'there are bars of silver here!', 'silver', '')
 gold = item('gold', 'g', 'there is a gold nugget here!', 'gold', '')
 coke_can = item('black cylinder', 'c', 'there is a mysterious black cylinder here', 'coke_can', '')
 quarter = item('silver coin', 'q', 'there is a quarter here!', 'quarter', '')
-keys = item('rusty keys', 'k', 'there are some keys here', 'keys', 'home')
+keys = item('rusty keys', 'k', 'there are some keys here', 'keys', '')
 
    
     
@@ -258,12 +258,12 @@ def setup():
     maze_18 = room('maze 18', 'nesw', 'maze_14', 'maze_17', 'maze_6', 'maze_15', maze_string, maze_string)
     cave_array.append(maze_18)
     #set up initial inventory
-    home.room_inventory_add(['lamp', 'keys'])
-    maze_18.room_inventory_add('silver')
-    debris_room.room_inventory_add('rod')
-    crystal_room.room_inventory_add('gold')
-    strange_room.room_inventory_add('coke_can')
-    junction.room_inventory_add('quarter')
+    cave_array[room_finder('home')].room_inventory_add(['lamp', 'keys'])
+    cave_array[room_finder('maze 18')].room_inventory_add('silver')
+    cave_array[room_finder('debris')].room_inventory_add('rod')
+    cave_array[room_finder('crystal room')].room_inventory_add('gold')
+    cave_array[room_finder('chem lab')].room_inventory_add('coke_can')
+    cave_array[room_finder('junction')].room_inventory_add('quarter')
 
 def room_finder(answer):
     #searches cave_array for destination room, if not found, return 0 (-> room 0)
@@ -284,12 +284,12 @@ def
                               
     
 def enter_room(derp=False):
-    if player1.player_room == 'pit_death':
+    if player1.player_room == 0:
         death_instance = raw_input()
         if death_instance == 'y':
-            room_instance = player1.player_room
-            room_instance.room_inventory_remove('lamp')
-            player1.room_change('home')
+            
+            cave_array[player1.player_room].room_inventory_remove('lamp')
+            player1.room_change(9)
             lamp.item_location('start_room')
             start_room.room_inventory_add('lamp')
             enter_room()
@@ -299,19 +299,18 @@ def enter_room(derp=False):
             
     else:        
         if derp==False:
-            enter_rooom_instance = player1.player_room
-            if eval(player1.player_room).entered == False:
-                print_instance_enter = eval(player1.player_room).long_description
+            if cave_array[player1.player_room].entered == False:
+                print_instance_enter = cave_array[player1.player_room].long_description
                 print(print_instance_enter)
             else:
-                print_instance_enter = eval(player1.player_room).short_description
+                print_instance_enter = cave_array[player1.player_room].short_description
                 print(print_instance_enter)
-            for items in eval(player1.player_room).room_inventory:
+            for items in cave_array[player1.player_room].room_inventory:
                 print_instance_items = item.description
                 print(print_instance_items)
         elif derp==True:
-            eval(player1.player_room).short_description
-            player1.room_change(pit_death)
+            cave_array[player1.player_room].short_description
+            player1.room_change(0)
             enter_room()
         else:
             print ('program failure')
@@ -329,9 +328,8 @@ def room_change(direction, derp=False):
     else:
         light_instance = False
         
-    if eval(player1.player_room).aboveground == True or light_instance == True:
-        room_change_instance = player1.player_room
-        if direction in eval(player1.player_room).directions:
+    if cave_array[player1.player_room].aboveground == True or light_instance == True:
+        if direction in cave_array[player1.player_room].directions:
             derp_yes = False
             iterations = 0
             if direction == 'n':
@@ -402,24 +400,22 @@ def help():
 
         
 def place_drop():
-    room_instance_drop = player1.player_room
     drop_instance = raw_input('what do you want to place/drop?')
     if drop_instance in player1.player_inventory:
         drop_instance.location(player1.player_room)
         player1.player_inventory_remove(drop_instance)
-        eval(player1.player_room).room_inventory_add(drop_instance)
+        cave_array[player1.player_room].room_inventory_add(drop_instance)
     else:
         print ("you don't have that")
         
 def use_item():
     use_instance = raw_input('what do you want to use?')
-    room_instance_use = player1.player_room
     if use_instance in player1.player_inventory:
         if use_instance == 'lamp':
             global lamp_on
             lamp_on = True
         elif use_instance == 'rod':
-            if player1.player_room == chasm1 or player1.player_room == chasm2:
+            if player1.player_room == 14 or player1.player_room == 15: #14 = chasm1, 15 = chasm2
                 chasm1.make_bridge()
                 chasm2.make_bridge()
         else:
@@ -430,14 +426,13 @@ def use_item():
         
 def get_action():
     #ugh
-    room_instance_get = player1.player_room
     get_instance = raw_input('what would you like to get?')
     if get_instance == 'c' and len(get_instance)== 1:
         print ('nevermind')
-    elif get_instance in eval(player1.player_room).room_inventory:
+    elif get_instance in cave_array[player1.player_room].room_inventory:
         get_instance.location('player_inventory')
         player1.player_inventory_add(get_instance)
-        eval(player1.player_room).room_inventory_remove(get_instance)
+        cave_array[player1.player_room].room_inventory_remove(get_instance)
     elif get_instance in player1.player_inventory:
         print ('you already have that!')
     else:
@@ -479,10 +474,10 @@ def action(answer):
 def xyzzy_xyzzy():
     #Xyzzy teleport function
     room = player1.player_room
-    if room == 'debris':
-        player1.room_change('home')
-    elif room == 'home':
-        player1.room_change('debris')
+    if room == room_finder('debris'):
+        player1.room_change(room_finder('home'))
+    elif room == room_finder('home'):
+        player1.room_change(room_finder('debris'))
     else:
         print ('nothing happens')
         
