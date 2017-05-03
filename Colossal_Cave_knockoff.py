@@ -4,6 +4,7 @@
 #note: This code is heavily based off of the game by Will Crowther, and the maze by that made by adam woods 
 global iterations
 iterations = 0
+global cave_array
 global command_string_help
 command_string_help = ''' 
 list of commands 
@@ -173,7 +174,8 @@ def setup():
     maze_string = 'you are in a maze of many passages, all alike'
     crystal_string_1 = 'you are in a room made of sparkling crystals. there are passages to the north, south, east, and west.'
     crystal_string_2 = 'you are in the crystal room'
-    global cave_array[]
+    global cave_array
+    cave_array = []
     #rooms
     pit_death = room('death', '', '', '', '', '', death_string_1, death_string_2)
     cave_array.append(pit_death)
@@ -280,7 +282,7 @@ def room_finder(answer):
     else:
         return 0
 
-def 
+
                               
     
 def enter_room(derp=False):
@@ -494,5 +496,4 @@ def colossal_cave_knockoff():
         colossal_cave_knockoff()
     else:
         print ('goodbye')
-        
         
