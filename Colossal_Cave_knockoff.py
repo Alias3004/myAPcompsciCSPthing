@@ -407,7 +407,7 @@ def room_change(direction, derp=False):
             elif direction== 'e':
                 print ('you go east')
                 player1.go_east()
-            elif dirction == 's':
+            elif direction == 's':
                 print ('you go south')
                 player1.go_south()
             elif direction == 'w':
