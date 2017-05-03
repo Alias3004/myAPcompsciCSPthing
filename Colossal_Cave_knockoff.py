@@ -187,77 +187,77 @@ def setup():
     cave_array.append(cliff)
     start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest', 'cabin', start_string_1, start_string_2, aboveground = True)
     cave_array.append(start_room)
-    wilderness = room('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest3', wilderness_string, wilderness_string, aboveground = True)
+    wilderness = room('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest', wilderness_string, wilderness_string, aboveground = True)
     cave_array.append(wilderness)
-    forest3 = room('forest', 'nesw', 'start_room', 'wilderness', 'plains3', 'wilderness', forest3_string_1, forest3_string_2, aboveground = True)
+    forest3 = room('forest', 'nesw', 'start', 'wilderness', 'plains', 'wilderness', forest3_string_1, forest3_string_2, aboveground = True)
     cave_array.append(forest3)
-    plains3 = room('plains', 'nesw', 'forest3', 'featureless_plain', 'cave_entrance', 'featureless_plain', plains3_string_1, plains3_string_2, aboveground = True)
+    plains3 = room('plains', 'nesw', 'forest', 'featureless plain', 'cave entrance', 'featureless plain', plains3_string_1, plains3_string_2, aboveground = True)
     cave_array.append(plains3)
-    home = room('cabin', 'e', 'wall', 'start_room', 'wall', 'wall', home_string_1, home_string_2, aboveground = True)
+    home = room('cabin', 'e', 'wall', 'start', 'wall', 'wall', home_string_1, home_string_2, aboveground = True)
     cave_array.append(home)
-    featureless_plain = room('featureless plain', 'nesw', 'featureless_plain', 'featureless_plain', 'plains3', 'featureless_plain', featureless_string, featureless_string, aboveground = True)
+    featureless_plain = room('featureless plain', 'nesw', 'featureless plain', 'featureless plain', 'plains', 'featureless plain', featureless_string, featureless_string, aboveground = True)
     cave_array.append(featureless_plain)
-    hall_of_the_mount = room('hall of the mount', 'ns', 'debris_room', 'wall', 'ain_king', 'wall', hall_of_the_mount_string_1, hall_of_the_mount_string_2)
+    hall_of_the_mount = room('hall of the mount', 'ns', 'debris room', 'wall', 'ain king', 'wall', hall_of_the_mount_string_1, hall_of_the_mount_string_2)
     cave_array.append(hall_of_the_mount)
-    ain_king = room('ain king', 'ne', 'hall_of_the_mount', 'chasm1', 'wall', 'wall', ain_king_string_1, ain_king_string_2)
+    ain_king = room('ain king', 'ne', 'hall of the mount', 'chasm1', 'wall', 'wall', ain_king_string_1, ain_king_string_2)
     cave_array.append(ain_king)
-    cave_entrance = room('Cave entrance', 'nesw', 'plains3', 'featureless_plain', 'grill_room', 'featureless_plain', entrance_string_1, entrance_string_2, aboveground = True)
+    cave_entrance = room('Cave entrance', 'nesw', 'plains', 'featureless plain', 'grill room', 'featureless plain', entrance_string_1, entrance_string_2, aboveground = True)
     cave_array.append(cave_entrance)
-    grill_room = room('grill room', 'ns', 'cave_entrance', 'wall', 'debris_room', 'wall', grill_string_1, grill_string_2, aboveground = True)
+    grill_room = room('grill room', 'ns', 'cave entrance', 'wall', 'debris room', 'wall', grill_string_1, grill_string_2, aboveground = True)
     cave_array.append(grill_room)
-    chasm1 = room('north chasm', 'sw', 'wall', 'cliff', 'cliff', 'ain_King', chasm1_string_1, chasm1_string_2)
+    chasm1 = room('north chasm', 'sw', 'wall', 'cliff', 'cliff', 'ain king', chasm1_string_1, chasm1_string_2)
     cave_array.append(chasm1)
-    chasm2 = room('south chasm', 'ns', 'Cliff', 'wall', 'Crystal_room', 'wall', chasm2_string_2, chasm2_string_2)
+    chasm2 = room('south chasm', 'ns', 'Cliff', 'wall', 'crystal room', 'wall', chasm2_string_2, chasm2_string_2)
     cave_array.append(chasm2)
-    crystal_room = room('crystal room', 'nesw', 'Chasm2', 'Big_Room4', 'Twilight_Zone', 'ugh', crystal_string_1, crystal_string_2)
+    crystal_room = room('crystal room', 'nesw', 'Chasm2', 'big room', 'twilight zone', 'ugh', crystal_string_1, crystal_string_2)
     cave_array.append(crystal_room)
     twilight_zone = room('twilight zone', 'nesw', 'ugh', 'ugh', 'ugh', 'ugh', twilight_zone_string_1, twilight_zone_string_2)
     cave_array.append(twilight_zone)
-    ugh = room('ugh', 'nesw', 'twilight_zone', 'twilight_zone', 'twilight_zone', 'maze_5', ugh_string, ugh_string)
+    ugh = room('ugh', 'nesw', 'twilight zone', 'twilight zone', 'twilight zone', 'maze 5', ugh_string, ugh_string)
     cave_array.append(ugh)
-    Big_room = room('Big room', 'junction', 'wall', '', 'wall', 'crystal_room', big_room_string, big_room_string)
+    Big_room = room('big room', 'junction', 'wall', '', 'wall', 'crystal room', big_room_string, big_room_string)
     cave_array.append(Big_room)
-    junction = room('junction', 'nsw', 'strange room', 'big_room', 'map_room', 'wall', junction_string_1, junction_string_2)
+    junction = room('junction', 'nsw', 'strange room', 'big room', 'map room', 'wall', junction_string_1, junction_string_2)
     cave_array.append(junction)
     strange_room = room('chem lab', 's', 'wall', 'wall', 'junction', 'wall', strange_room_string, strange_room_string)
     cave_array.append(strange_room)
-    map_room = room('map room', 'ew', 'wall', 'junction', 'wall', 'maze_1', map_room_string_1, map_room_string_2)
+    map_room = room('map room', 'ew', 'wall', 'junction', 'wall', 'maze 1', map_room_string_1, map_room_string_2)
     cave_array.append(map_room)
-    maze_1 = room('maze entrance', 'nesw', 'maze_1', 'map_room', 'maze_4', 'maze_2', maze_string, maze_string)
+    maze_1 = room('maze entrance', 'nesw', 'maze 1', 'map room', 'maze 4', 'maze 2', maze_string, maze_string)
     cave_array.append(maze_1)
-    maze_2= room('maze 2', 'nesw', 'maze_1', 'maze_5', 'maze_2', 'maze_3', maze_string, maze_string)
+    maze_2= room('maze 2', 'nesw', 'maze 1', 'maze 5', 'maze 2', 'maze 3', maze_string, maze_string)
     cave_array.append(maze_2)
-    maze_3= room('maze 3', 'nesw', 'maze_2', 'maze_3', 'maze_6', 'maze_4', maze_string, maze_string)
+    maze_3= room('maze 3', 'nesw', 'maze 2', 'maze 3', 'maze 6', 'maze 4', maze_string, maze_string)
     cave_array.append(maze_3)
-    maze_4= room('maze 4', 'nesw', 'maze_2', 'maze_3', 'maze_1', 'maze_4', maze_string, maze_string)
+    maze_4= room('maze 4', 'nesw', 'maze 2', 'maze 3', 'maze 1', 'maze 4', maze_string, maze_string)
     cave_array.append(maze_4)
-    maze_5= room('maze 5', 'nesw', 'maze_12', 'maze_5', 'maze_2', 'maze_5', maze_string, maze_string)
+    maze_5= room('maze 5', 'nesw', 'maze 12', 'maze 5', 'maze 2', 'maze 5', maze_string, maze_string)
     cave_array.append(maze_5)
-    maze_6= room('maze 6', 'nesw', 'maze_3', 'maze_7', 'maze_6', 'maze_8', maze_string, maze_string)
+    maze_6= room('maze 6', 'nesw', 'maze 3', 'maze 7', 'maze 6', 'maze 8', maze_string, maze_string)
     cave_array.append(maze_6)
-    maze_7= room('maze 7', 'nesw', 'maze_7', 'maze_7', 'maze_7', 'maze_6', maze_string, maze_string)
+    maze_7= room('maze 7', 'nesw', 'maze 7', 'maze 7', 'maze 7', 'maze 6', maze_string, maze_string)
     cave_array.append(maze_7)
-    maze_8= room('maze 8', 'nesw', 'maze_14', 'maze_9', 'maze_6', 'maze_8', maze_string, maze_string)
+    maze_8= room('maze 8', 'nesw', 'maze 14', 'maze 9', 'maze 6', 'maze 8', maze_string, maze_string)
     cave_array.append(maze_8)
-    maze_9= room('maze 9', 'nesw', 'maze_12', 'maze_10', 'maze_13', 'maze_8', maze_string, maze_string)
+    maze_9= room('maze 9', 'nesw', 'maze 12', 'maze 10', 'maze 13', 'maze 8', maze_string, maze_string)
     cave_array.append(maze_9)
-    maze_10= room('maze 10', 'nesw', 'maze_9', 'maze_9', 'maze_11', 'maze_10', maze_string, maze_string)
+    maze_10= room('maze 10', 'nesw', 'maze 9', 'maze 9', 'maze 11', 'maze 10', maze_string, maze_string)
     cave_array.append(maze_10)
-    maze_11= room('maze 11', 'nesw', 'maze_10', 'maze_13', 'maze_11', 'maze_11', maze_string, maze_string)
+    maze_11= room('maze 11', 'nesw', 'maze 10', 'maze 13', 'maze 11', 'maze 11', maze_string, maze_string)
     cave_array.append(maze_11)
-    maze_12= room('maze 12', 'nesw', 'maze_12', 'maze_9', 'maze_9', 'maze_13', maze_string, maze_string)
+    maze_12= room('maze 12', 'nesw', 'maze 12', 'maze 9', 'maze 9', 'maze 13', maze_string, maze_string)
     cave_array.append(maze_12)
-    maze_13= room('maze 13', 'nesw', 'maze_18', 'maze_7', 'maze_9', 'maze_12', maze_string, maze_string)
+    maze_13= room('maze 13', 'nesw', 'maze 18', 'maze 7', 'maze 9', 'maze 12', maze_string, maze_string)
     cave_array.append(maze_13)
-    maze_14= room('maze 14', 'nesw', 'maze_8', 'maze_16', 'maze_17', 'maze_8', maze_string, maze_string)
+    maze_14= room('maze 14', 'nesw', 'maze 8', 'maze 16', 'maze 17', 'maze 8', maze_string, maze_string)
     cave_array.append(maze_14)
-    maze_15= room('maze 15', 'nesw', 'maze_17', 'maze_15', 'maze_16', 'maze_16', maze_string, maze_string)
+    maze_15= room('maze 15', 'nesw', 'maze 17', 'maze 15', 'maze 16', 'maze 16', maze_string, maze_string)
     cave_array.append(maze_15)
-    maze_16= room('maze 16', 'nesw', 'maze_15', 'maze_14', 'maze_16', 'maze_17', maze_string, maze_string)
+    maze_16= room('maze 16', 'nesw', 'maze 15', 'maze 14', 'maze 16', 'maze 17', maze_string, maze_string)
     cave_array.append(maze_16)
-    maze_17= room('maze 17', 'nesw', 'maze_17', 'maze_14', 'maze_16', 'maze_15', maze_string, maze_string)
+    maze_17= room('maze 17', 'nesw', 'maze 17', 'maze 14', 'maze 16', 'maze 15', maze_string, maze_string)
     cave_array.append(maze_17)
-    maze_18 = room('maze 18', 'nesw', 'maze_14', 'maze_17', 'maze_6', 'maze_15', maze_string, maze_string)
+    maze_18 = room('maze 18', 'nesw', 'maze 14', 'maze 17', 'maze 6', 'maze 15', maze_string, maze_string)
     cave_array.append(maze_18)
     #set up initial inventory
     cave_array[room_finder('home')].room_inventory_add(['lamp', 'keys'])
@@ -322,15 +322,15 @@ def room_change(direction, derp=False):
     global iterations
     #this is what controls where goes to where
     room = player1.player_room
-    global lamp_on
-    if lamp_on == True and lamp.location== room:
-        light_instance = True
-    elif lamp in player1.player_inventory and lamp_on == True:
-        light_instance = True
-    else:
-        light_instance = False
+   # global lamp_on
+    #if lamp_on == True and lamp.location== room:
+     #   light_instance = True
+    #elif lamp in player1.player_inventory and lamp_on == True:
+    #    light_instance = True
+    #else:
+    #    light_instance = False
         
-    if cave_array[player1.player_room].aboveground == True or light_instance == True:
+    #if cave_array[player1.player_room].aboveground == True or light_instance == True:
         if direction in cave_array[player1.player_room].directions:
             derp_yes = False
             iterations = 0
@@ -367,8 +367,8 @@ def room_change(direction, derp=False):
         enter_room(derp = derp_yes)
             
             
-    else:
-        player1.room_change('pit_death')
+    #else:
+     #   player1.room_change('pit_death')
     
 
     
