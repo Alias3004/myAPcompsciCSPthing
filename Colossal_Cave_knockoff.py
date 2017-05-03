@@ -179,13 +179,13 @@ def setup():
     #rooms
     pit_death = room('death', '', '', '', '', '', death_string_1, death_string_2)
     cave_array.append(pit_death)
-    debris_room = room('debris', 'ns', 'grill_room', 'wall', 'hall_of_the_mount', 'wall', debris_string_1, debris_string_2)
+    debris_room = room('debris', 'ns', 'grill room', 'wall', 'hall of the mount', 'wall', debris_string_1, debris_string_2)
     cave_array.append(debris_room)
     wall = room('wall', '', '', '', '', '', wall_string, wall_string)
     cave_array.append(wall)
     cliff = room('cliff', '','','','','', cliff_string, cliff_string)
     cave_array.append(cliff)
-    start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest3', 'home', start_string_1, start_string_2, aboveground = True)
+    start_room = room('start', 'nesw', 'wilderness', 'wilderness', 'forest', 'cabin', start_string_1, start_string_2, aboveground = True)
     cave_array.append(start_room)
     wilderness = room('wilderness', 'nesw', 'wilderness', 'wilderness', 'wilderness', 'forest3', wilderness_string, wilderness_string, aboveground = True)
     cave_array.append(wilderness)
@@ -193,7 +193,7 @@ def setup():
     cave_array.append(forest3)
     plains3 = room('plains', 'nesw', 'forest3', 'featureless_plain', 'cave_entrance', 'featureless_plain', plains3_string_1, plains3_string_2, aboveground = True)
     cave_array.append(plains3)
-    home = room('Cabin', 'e', 'wall', 'start_room', 'wall', 'wall', home_string_1, home_string_2, aboveground = True)
+    home = room('cabin', 'e', 'wall', 'start_room', 'wall', 'wall', home_string_1, home_string_2, aboveground = True)
     cave_array.append(home)
     featureless_plain = room('featureless plain', 'nesw', 'featureless_plain', 'featureless_plain', 'plains3', 'featureless_plain', featureless_string, featureless_string, aboveground = True)
     cave_array.append(featureless_plain)
@@ -495,5 +495,4 @@ def colossal_cave_knockoff():
     if restart == 'y':
         colossal_cave_knockoff()
     else:
-        print ('goodbye')
-        
+        print ('goodbye') 
