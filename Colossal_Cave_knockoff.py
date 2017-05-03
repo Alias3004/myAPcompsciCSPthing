@@ -396,7 +396,7 @@ def room_change(direction, derp=False):
     else:
         light_instance = False
         
-    if room.aboveground == True or light_instance == True:
+    if eval(player1.player_room).aboveground == True or light_instance == True:
         room_change_instance = player1.player_room
         if direction in eval(player1.player_room).directions:
             derp_yes = False
